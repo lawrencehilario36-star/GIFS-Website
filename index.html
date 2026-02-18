@@ -53,7 +53,6 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
   animation: slideUp 0.6s ease-out;
 }
 @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
 .login-brand {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
   color: var(--white); padding: 60px 40px; position: relative; overflow: hidden;
@@ -88,7 +87,6 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .shape-2 { width: 150px; height: 150px; bottom: 50px; left: -50px; animation: rotate 20s linear infinite reverse; }
 .shape-3 { width: 200px; height: 200px; top: 50%; right: -80px; animation: rotate 25s linear infinite; }
 @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
 .login-form-section { padding: 60px 50px; display: flex; align-items: center; justify-content: center; background: var(--white); }
 .login-box { width: 100%; max-width: 400px; animation: fadeIn 0.8s ease-out 0.4s both; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -124,7 +122,7 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .demo-email { font-size: 11px; color: var(--text-dark); font-weight: 500; word-break: break-all; }
 .demo-pass { font-size: 11px; color: var(--text-light); }
 
-/* ===== FIREBASE LOADING OVERLAY ===== */
+/* ===== FIREBASE LOADER ===== */
 #firebaseLoader {
   position: fixed; inset: 0; background: rgba(91,33,182,0.92); z-index: 9998;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
@@ -133,7 +131,7 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 #firebaseLoader p { color: white; font-size: 16px; font-weight: 500; }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* ===== DASHBOARD LAYOUT ===== */
+/* ===== DASHBOARD ===== */
 #dashboard { display: none; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
 .app-wrapper { display: flex; min-height: 100vh; }
 
@@ -144,36 +142,21 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
   height: 100vh; z-index: 100; box-shadow: 4px 0 20px rgba(0,0,0,0.2);
   transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.sidebar-logo {
-  display: flex; align-items: center; gap: 12px; padding: 28px 24px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.sidebar-logo .logo-icon {
-  width: 40px; height: 40px; background: rgba(255,255,255,0.2);
-  border-radius: 10px; display: flex; align-items: center; justify-content: center;
-}
+.sidebar-logo { display: flex; align-items: center; gap: 12px; padding: 28px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-logo .logo-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
 .sidebar-logo .logo-icon i { color: white; font-size: 18px; }
 .sidebar-logo .logo-text { font-size: 22px; font-weight: 700; color: white; letter-spacing: 1px; }
 .sidebar-nav { flex: 1; padding: 20px 12px; display: flex; flex-direction: column; gap: 4px; }
 .nav-item {
   display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px;
   color: rgba(255,255,255,0.7); cursor: pointer; transition: all 0.2s ease; font-size: 14px;
-  font-weight: 500; border: none; background: none; width: 100%; text-align: left;
-  font-family: 'Outfit', sans-serif;
+  font-weight: 500; border: none; background: none; width: 100%; text-align: left; font-family: 'Outfit', sans-serif;
 }
 .nav-item:hover { background: rgba(255,255,255,0.1); color: white; }
 .nav-item.active { background: rgba(255,255,255,0.2); color: white; border-left: 3px solid white; padding-left: 13px; }
 .nav-item i { width: 18px; font-size: 15px; }
-.sidebar-user {
-  padding: 20px 16px; border-top: 1px solid rgba(255,255,255,0.1);
-  display: flex; align-items: center; gap: 10px;
-}
-.user-avatar {
-  width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.3);
-  display: flex; align-items: center; justify-content: center;
-  border: 2px solid rgba(255,255,255,0.4); flex-shrink: 0;
-  font-size: 17px; font-weight: 700; color: white;
-}
+.sidebar-user { padding: 20px 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 10px; }
+.user-avatar { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; border: 2px solid rgba(255,255,255,0.4); flex-shrink: 0; font-size: 17px; font-weight: 700; color: white; }
 .user-info { flex: 1; min-width: 0; }
 .user-name { font-size: 13px; font-weight: 600; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .user-email { font-size: 11px; color: rgba(255,255,255,0.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -182,26 +165,17 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .main-content { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; min-height: 100vh; background: #f3f0fb; border-radius: 20px 0 0 20px; }
 
 /* ===== TOPBAR ===== */
-.topbar {
-  display: flex; align-items: center; padding: 16px 28px; background: white;
-  border-radius: 20px 0 0 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  gap: 16px; position: sticky; top: 0; z-index: 50;
-}
-.search-bar {
-  display: flex; align-items: center; gap: 10px; background: #f3f4f6;
-  border-radius: 10px; padding: 10px 16px; flex: 1; max-width: 360px;
-  border: 1.5px solid transparent; transition: all 0.2s;
-}
+.topbar { display: flex; align-items: center; padding: 16px 28px; background: white; border-radius: 20px 0 0 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); gap: 16px; position: sticky; top: 0; z-index: 50; }
+.search-bar { display: flex; align-items: center; gap: 10px; background: #f3f4f6; border-radius: 10px; padding: 10px 16px; flex: 1; max-width: 360px; border: 1.5px solid transparent; transition: all 0.2s; }
 .search-bar:focus-within { border-color: var(--primary-light); background: white; }
 .search-bar i { color: var(--text-light); font-size: 14px; }
 .search-bar input { border: none; background: none; outline: none; font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--text-dark); width: 100%; }
 .search-caret { color: var(--text-light); font-size: 12px; border-left: 1px solid #e5e7eb; padding-left: 8px; }
 
-/* ===== PAGE CONTENT ===== */
+/* ===== PAGE ===== */
 .page-content { padding: 28px; flex: 1; }
 .page { display: none; }
 .page.active { display: block; }
-
 .page-header { margin-bottom: 24px; }
 .page-title-row { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
 .page-icon { width: 44px; height: 44px; background: var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
@@ -209,7 +183,7 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .page-header h2 { font-size: 26px; font-weight: 700; color: var(--text-dark); }
 .page-header p { color: var(--text-light); font-size: 14px; padding-left: 58px; margin-top: -2px; }
 
-/* ===== STATS ROW ===== */
+/* ===== STATS ===== */
 .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
 .stat-card { background: white; border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: all 0.2s; }
 .stat-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(91,33,182,0.12); }
@@ -230,33 +204,19 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .panel { background: white; border-radius: 16px; padding: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
 .panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
 .panel-title { font-size: 17px; font-weight: 700; color: var(--text-dark); }
-.sort-btn {
-  display: flex; align-items: center; gap: 6px; padding: 7px 14px; border: 1.5px solid #e5e7eb;
-  border-radius: 8px; background: white; font-size: 13px; color: var(--text-dark); cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-weight: 500; transition: all 0.2s; outline: none;
-}
+.sort-btn { display: flex; align-items: center; gap: 6px; padding: 7px 14px; border: 1.5px solid #e5e7eb; border-radius: 8px; background: white; font-size: 13px; color: var(--text-dark); cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 500; transition: all 0.2s; outline: none; }
 .sort-btn:hover { border-color: var(--primary-light); color: var(--primary); }
-.panel-search {
-  display: flex; align-items: center; gap: 10px; background: #f9fafb;
-  border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px;
-}
+.panel-search { display: flex; align-items: center; gap: 10px; background: #f9fafb; border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; }
 .panel-search i { color: var(--text-light); font-size: 13px; }
 .panel-search input { border: none; background: none; outline: none; font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--text-dark); width: 100%; }
-.filter-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
-.filter-tab {
-  padding: 7px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; cursor: pointer;
-  border: 1.5px solid #e5e7eb; background: white; color: var(--text-light);
-  font-family: 'Outfit', sans-serif; transition: all 0.2s;
-}
+.filter-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.filter-tab { padding: 7px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1.5px solid #e5e7eb; background: white; color: var(--text-light); font-family: 'Outfit', sans-serif; transition: all 0.2s; }
 .filter-tab:hover { border-color: var(--primary-light); color: var(--primary); }
 .filter-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
 
 /* ===== ANN LIST ===== */
 .ann-list { display: flex; flex-direction: column; gap: 10px; }
-.ann-item {
-  display: flex; align-items: flex-start; gap: 14px; padding: 16px; border-radius: 12px;
-  background: #fafafa; border: 1.5px solid #f0f0f0; transition: all 0.2s;
-}
+.ann-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px; border-radius: 12px; background: #fafafa; border: 1.5px solid #f0f0f0; transition: all 0.2s; }
 .ann-item:hover { border-color: var(--primary-light); background: white; box-shadow: 0 2px 12px rgba(91,33,182,0.08); }
 .ann-cat-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
 .ann-cat-icon.Academic { background: #dbeafe; color: var(--academic); }
@@ -265,8 +225,19 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .ann-cat-icon.General { background: #f3f4f6; color: var(--general); }
 .ann-body { flex: 1; min-width: 0; }
 .ann-title { font-size: 15px; font-weight: 600; color: var(--text-dark); margin-bottom: 3px; }
-.ann-desc { font-size: 13px; color: var(--text-light); margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ann-meta { display: flex; align-items: center; gap: 8px; }
+.ann-desc { font-size: 13px; color: var(--text-light); margin-bottom: 6px; }
+
+/* ===== NEW: Extra Details Row ===== */
+.ann-extra { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.ann-extra-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #f3f0fb; border: 1px solid #e5e7eb;
+  border-radius: 20px; padding: 3px 10px;
+  font-size: 12px; color: var(--text-dark); font-weight: 500;
+}
+.ann-extra-chip i { color: var(--primary); font-size: 11px; }
+
+.ann-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .ann-date { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-light); }
 .ann-date i { font-size: 11px; }
 .ann-cat-badge { font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 20px; }
@@ -281,63 +252,27 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .btn-delete { padding: 6px 14px; border-radius: 8px; border: none; background: var(--primary); color: white; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
 .btn-delete:hover { background: var(--primary-dark); }
 
-/* ===== ANNOUNCEMENT IMAGE (zoomable) ===== */
-.ann-img-wrap {
-  position: relative; width: 100%; margin-bottom: 8px; border-radius: 8px;
-  overflow: hidden; cursor: zoom-in;
-}
-.ann-img-wrap img {
-  width: 100%; max-height: 120px; object-fit: cover; display: block;
-  border-radius: 8px; transition: transform 0.3s ease, filter 0.3s ease;
-}
+/* ===== IMAGES ===== */
+.ann-img-wrap { position: relative; width: 100%; margin-bottom: 8px; border-radius: 8px; overflow: hidden; cursor: zoom-in; }
+.ann-img-wrap img { width: 100%; max-height: 120px; object-fit: cover; display: block; border-radius: 8px; transition: transform 0.3s ease, filter 0.3s ease; }
 .ann-img-wrap:hover img { transform: scale(1.04); filter: brightness(0.92); }
-.ann-img-zoom-hint {
-  position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.55);
-  color: #fff; font-size: 11px; padding: 3px 8px; border-radius: 20px;
-  display: flex; align-items: center; gap: 4px; opacity: 0; transition: opacity 0.25s;
-  pointer-events: none; backdrop-filter: blur(4px);
-}
+.ann-img-zoom-hint { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.55); color: #fff; font-size: 11px; padding: 3px 8px; border-radius: 20px; display: flex; align-items: center; gap: 4px; opacity: 0; transition: opacity 0.25s; pointer-events: none; }
 .ann-img-wrap:hover .ann-img-zoom-hint { opacity: 1; }
-
-/* Manage grid image thumb */
-.manage-thumb-wrap {
-  position: relative; width: 100%; height: 60px; margin-bottom: 6px;
-  border-radius: 6px; overflow: hidden; cursor: zoom-in;
-}
-.manage-thumb-wrap img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
+.manage-thumb-wrap { position: relative; width: 100%; height: 60px; margin-bottom: 6px; border-radius: 6px; overflow: hidden; cursor: zoom-in; }
+.manage-thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease, filter 0.3s ease; }
 .manage-thumb-wrap:hover img { transform: scale(1.06); filter: brightness(0.9); }
 .manage-thumb-wrap .ann-img-zoom-hint { opacity: 0; }
 .manage-thumb-wrap:hover .ann-img-zoom-hint { opacity: 1; }
 
-/* ===== LIGHTBOX OVERLAY ===== */
-#lightboxOverlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0); z-index: 9999;
-  display: flex; align-items: center; justify-content: center; padding: 24px;
-  cursor: zoom-out; transition: background 0.3s ease; pointer-events: none; visibility: hidden;
-}
+/* ===== LIGHTBOX ===== */
+#lightboxOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; transition: background 0.3s ease; pointer-events: none; visibility: hidden; }
 #lightboxOverlay.open { background: rgba(0,0,0,0.85); pointer-events: all; visibility: visible; }
-.lightbox-inner {
-  position: relative; max-width: 90vw; max-height: 88vh;
-  transform: scale(0.7) translateY(30px); opacity: 0;
-  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease; cursor: default;
-}
+.lightbox-inner { position: relative; max-width: 90vw; max-height: 88vh; transform: scale(0.7) translateY(30px); opacity: 0; transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease; cursor: default; }
 #lightboxOverlay.open .lightbox-inner { transform: scale(1) translateY(0); opacity: 1; }
-.lightbox-inner img {
-  max-width: 90vw; max-height: 82vh; border-radius: 14px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6); display: block; object-fit: contain; user-select: none;
-}
-.lightbox-close {
-  position: absolute; top: -14px; right: -14px; width: 36px; height: 36px;
-  background: white; border-radius: 50%; border: none; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; font-size: 16px;
-  color: var(--text-dark); box-shadow: 0 4px 14px rgba(0,0,0,0.3);
-  transition: transform 0.2s ease, background 0.2s; z-index: 2;
-}
+.lightbox-inner img { max-width: 90vw; max-height: 82vh; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); display: block; object-fit: contain; user-select: none; }
+.lightbox-close { position: absolute; top: -14px; right: -14px; width: 36px; height: 36px; background: white; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--text-dark); box-shadow: 0 4px 14px rgba(0,0,0,0.3); transition: transform 0.2s ease, background 0.2s; z-index: 2; }
 .lightbox-close:hover { background: var(--urgent); color: white; transform: scale(1.1) rotate(90deg); }
-.lightbox-caption { margin-top: 12px; text-align: center; color: rgba(255,255,255,0.75); font-size: 13px; letter-spacing: 0.3px; }
+.lightbox-caption { margin-top: 12px; text-align: center; color: rgba(255,255,255,0.75); font-size: 13px; }
 
 /* ===== CALENDAR SIDEBAR ===== */
 .calendar-panel { display: flex; flex-direction: column; gap: 16px; }
@@ -354,8 +289,6 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .cal-day.has-event { background: rgba(255,255,255,0.15); }
 .cal-day.other-month { opacity: 0.3; }
 .cal-day.selected { background: rgba(255,255,255,0.35); font-weight: 700; }
-
-/* ===== UPCOMING ===== */
 .upcoming-panel { background: white; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
 .upcoming-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; color: var(--text-dark); }
 .upcoming-list { display: flex; flex-direction: column; gap: 12px; }
@@ -369,17 +302,23 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 /* ===== CREATE PAGE ===== */
 .create-grid { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; }
 .create-form-panel { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.form-section-label { font-size: 15px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
-.form-section-label .posted-hint { font-size: 12px; font-weight: 400; color: var(--text-light); }
-.form-input { width: 100%; padding: 12px 16px; border: 1.5px solid #e5e7eb; border-radius: 10px; font-size: 14px; font-family: 'Outfit', sans-serif; color: var(--text-dark); background: #fafafa; outline: none; transition: all 0.2s; margin-bottom: 18px; }
+.form-section-label { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 7px; }
+.form-section-label i { color: var(--primary); font-size: 13px; }
+.form-section-label .posted-hint { font-size: 12px; font-weight: 400; color: var(--text-light); margin-left: auto; }
+.form-input { width: 100%; padding: 12px 16px; border: 1.5px solid #e5e7eb; border-radius: 10px; font-size: 14px; font-family: 'Outfit', sans-serif; color: var(--text-dark); background: #fafafa; outline: none; transition: all 0.2s; margin-bottom: 16px; }
 .form-input:focus { border-color: var(--primary-light); background: white; box-shadow: 0 0 0 4px rgba(124,58,237,0.08); }
 textarea.form-input { resize: vertical; min-height: 90px; }
-.category-select-wrapper { position: relative; margin-bottom: 18px; }
+.form-input-icon-wrap { position: relative; margin-bottom: 16px; }
+.form-input-icon-wrap .fii { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--primary-light); font-size: 13px; pointer-events: none; }
+.form-input-icon-wrap .form-input { padding-left: 38px; margin-bottom: 0; }
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.form-row-2 .form-input-icon-wrap { margin-bottom: 0; }
+.category-select-wrapper { position: relative; margin-bottom: 16px; }
 .category-select-wrapper .cat-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--primary); font-size: 15px; pointer-events: none; }
 .form-select { width: 100%; padding: 12px 16px 12px 40px; border: 1.5px solid #e5e7eb; border-radius: 10px; font-size: 14px; font-family: 'Outfit', sans-serif; color: var(--text-dark); background: #fafafa; outline: none; appearance: none; cursor: pointer; transition: all 0.2s; }
 .form-select:focus { border-color: var(--primary-light); background: white; }
 .select-arrow { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--text-light); pointer-events: none; }
-.post-btn { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 600; font-family: 'Outfit', sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(91,33,182,0.25); }
+.post-btn { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 600; font-family: 'Outfit', sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(91,33,182,0.25); margin-top: 4px; }
 .post-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
 .post-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
@@ -389,7 +328,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 .manage-search { display: flex; align-items: center; gap: 8px; background: #f9fafb; border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 10px 14px; margin-bottom: 12px; }
 .manage-search i { color: var(--text-light); font-size: 13px; }
 .manage-search input { border: none; background: none; outline: none; font-family: 'Outfit', sans-serif; font-size: 13px; color: var(--text-dark); width: 100%; }
-.manage-filter-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
+.manage-filter-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
 .manage-filter { padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1.5px solid #e5e7eb; background: white; color: var(--text-light); font-family: 'Outfit', sans-serif; transition: all 0.2s; }
 .manage-filter:hover { border-color: var(--primary-light); color: var(--primary); }
 .manage-filter.active { background: var(--primary); color: white; border-color: var(--primary); }
@@ -402,10 +341,10 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 
 /* ===== MANAGE GRID ===== */
 .manage-ann-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-.manage-ann-card { background: white; border-radius: 12px; padding: 16px; border: 1.5px solid #f0f0f0; transition: all 0.2s; cursor: pointer; }
+.manage-ann-card { background: white; border-radius: 12px; padding: 14px; border: 1.5px solid #f0f0f0; transition: all 0.2s; cursor: pointer; }
 .manage-ann-card:hover { border-color: var(--primary-light); box-shadow: 0 2px 12px rgba(91,33,182,0.08); }
-.manage-ann-card.selected { border-color: var(--primary); }
-.manage-card-top { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+.manage-ann-card.selected { border-color: var(--primary); background: #faf5ff; }
+.manage-card-top { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
 .manage-card-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
 .manage-card-icon.Academic { background: #dbeafe; color: var(--academic); }
 .manage-card-icon.Event { background: #ede9fe; color: var(--event); }
@@ -414,7 +353,11 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 .manage-card-title { font-size: 13px; font-weight: 600; color: var(--text-dark); line-height: 1.3; }
 .manage-card-desc { font-size: 12px; color: var(--text-light); margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .manage-posted { font-size: 11px; color: var(--text-light); margin-bottom: 6px; }
-.manage-card-meta { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+/* NEW: mini chips in manage card */
+.manage-card-chips { display: flex; flex-direction: column; gap: 3px; margin-bottom: 8px; }
+.manage-chip { font-size: 11px; color: var(--text-light); display: flex; align-items: center; gap: 5px; }
+.manage-chip i { color: var(--primary); font-size: 10px; width: 12px; text-align: center; }
+.manage-card-meta { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
 .manage-card-date { font-size: 11px; color: var(--text-light); display: flex; align-items: center; gap: 4px; }
 .manage-card-cat { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
 .manage-card-cat.Academic { background: #dbeafe; color: var(--academic); }
@@ -452,12 +395,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 /* ===== PROFILE ===== */
 .profile-card { background: white; border-radius: 16px; padding: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); max-width: 600px; }
 .profile-avatar-section { display: flex; align-items: center; gap: 20px; margin-bottom: 28px; }
-.profile-avatar-circle {
-  width: 80px; height: 80px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-  display: flex; align-items: center; justify-content: center; border: 4px solid #ede9fe;
-  font-size: 34px; font-weight: 700; color: white;
-}
+.profile-avatar-circle { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); display: flex; align-items: center; justify-content: center; border: 4px solid #ede9fe; font-size: 34px; font-weight: 700; color: white; }
 .profile-name { font-size: 22px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
 .profile-role { font-size: 14px; color: var(--text-light); }
 .profile-fields { display: flex; flex-direction: column; gap: 16px; }
@@ -473,16 +411,14 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 .toast.show { transform: translateY(0); opacity: 1; }
 .cancel-btn { width: 100%; padding: 10px; border: 1.5px solid #e5e7eb; border-radius: 10px; background: white; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--text-light); margin-top: 10px; transition: all 0.2s; display: none; }
 .cancel-btn:hover { border-color: var(--urgent); color: var(--urgent); }
-.date-hint { font-size: 12px; color: var(--text-light); margin-top: -14px; margin-bottom: 14px; display: flex; align-items: center; gap: 5px; }
+.date-hint { font-size: 12px; color: var(--text-light); margin-top: -12px; margin-bottom: 16px; display: flex; align-items: center; gap: 5px; }
 .date-hint i { color: var(--accent); font-size: 11px; }
-
-/* ===== IMAGE PREVIEW ===== */
 .image-preview-box { display: none; margin-bottom: 12px; border-radius: 10px; overflow: hidden; border: 1.5px solid #e5e7eb; }
 .image-preview-box img { width: 100%; max-height: 140px; object-fit: cover; display: block; }
 .image-preview-meta { display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: #f9fafb; }
 .image-preview-meta span { font-size: 12px; color: var(--text-light); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 160px; }
 .image-preview-meta button { background: none; border: none; color: var(--urgent); font-size: 12px; cursor: pointer; font-family: 'Outfit', sans-serif; flex-shrink: 0; }
-.image-preview-meta button:hover { text-decoration: underline; }
+.form-divider { border: none; border-top: 1.5px dashed #e5e7eb; margin: 20px 0 18px; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
@@ -491,12 +427,9 @@ textarea.form-input { resize: vertical; min-height: 90px; }
   .stats-row { grid-template-columns: repeat(2, 1fr); }
   .dashboard-grid, .create-grid { grid-template-columns: 1fr; }
   .manage-ann-grid { grid-template-columns: 1fr; }
+  .form-row-2 { grid-template-columns: 1fr; }
 }
-.mob-menu-btn {
-  display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
-  width: 40px; height: 40px; background: none; border: none; cursor: pointer;
-  flex-shrink: 0; border-radius: 10px; padding: 6px; transition: background 0.2s;
-}
+.mob-menu-btn { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 40px; height: 40px; background: none; border: none; cursor: pointer; flex-shrink: 0; border-radius: 10px; padding: 6px; transition: background 0.2s; }
 .mob-menu-btn:hover { background: rgba(91,33,182,0.08); }
 .mob-menu-btn span { display: block; width: 22px; height: 2.5px; background: var(--text-dark); border-radius: 3px; transition: all 0.3s ease; transform-origin: center; }
 .mob-menu-btn.is-open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
@@ -518,10 +451,10 @@ textarea.form-input { resize: vertical; min-height: 90px; }
   .search-bar { display: none; }
   .page-content { padding: 16px; }
   .page-header h2 { font-size: 22px; }
-  .page-header p { padding-left: 56px; }
   .stats-row { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .dashboard-grid, .create-grid { grid-template-columns: 1fr; }
   .manage-ann-grid { grid-template-columns: 1fr; }
+  .form-row-2 { grid-template-columns: 1fr; }
   .cal-full-cell { min-height: 56px; padding: 5px; }
   .cell-event { font-size: 9px; }
   .toast { bottom: 20px; right: 12px; left: 12px; text-align: center; }
@@ -530,29 +463,27 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 </head>
 <body>
 
-<!-- ========== FIREBASE LOADING OVERLAY ========== -->
+<!-- FIREBASE LOADER -->
 <div id="firebaseLoader">
   <i class="fa-solid fa-circle-notch loader-icon"></i>
   <p>Connecting to database...</p>
 </div>
 
-<!-- ========== LIGHTBOX OVERLAY ========== -->
+<!-- LIGHTBOX -->
 <div id="lightboxOverlay" onclick="closeLightbox(event)">
   <div class="lightbox-inner" id="lightboxInner" onclick="event.stopPropagation()">
     <button class="lightbox-close" onclick="closeLightbox()" title="Close"><i class="fa-solid fa-xmark"></i></button>
-    <img id="lightboxImg" src="" alt="Announcement Image">
+    <img id="lightboxImg" src="" alt="">
     <div class="lightbox-caption" id="lightboxCaption"></div>
   </div>
 </div>
 
-<!-- ========== LOGIN PAGE ========== -->
+<!-- LOGIN PAGE -->
 <div id="loginPage" style="display:none;">
   <div class="login-container">
     <div class="login-brand">
       <div class="brand-content">
-        <div class="school-logo">
-          <div class="logo-circle"><i class="fa-solid fa-graduation-cap"></i></div>
-        </div>
+        <div class="school-logo"><div class="logo-circle"><i class="fa-solid fa-graduation-cap"></i></div></div>
         <h1>SCEM</h1>
         <p class="tagline">School Announcements &amp; Events Portal</p>
         <div class="features">
@@ -562,18 +493,12 @@ textarea.form-input { resize: vertical; min-height: 90px; }
         </div>
       </div>
       <div class="decorative-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
+        <div class="shape shape-1"></div><div class="shape shape-2"></div><div class="shape shape-3"></div>
       </div>
     </div>
-
     <div class="login-form-section">
       <div class="login-box">
-        <div class="welcome-text">
-          <h2>Welcome Back!</h2>
-          <p>Sign in to stay updated with school announcements</p>
-        </div>
+        <div class="welcome-text"><h2>Welcome Back!</h2><p>Sign in to stay updated with school announcements</p></div>
         <form onsubmit="event.preventDefault(); login();">
           <div class="input-group">
             <label for="email"><i class="fa-solid fa-envelope"></i> Email Address</label>
@@ -583,9 +508,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
             <label for="password"><i class="fa-solid fa-lock"></i> Password</label>
             <div class="password-wrapper">
               <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
-              <button type="button" class="toggle-password" onclick="togglePassword()">
-                <i class="fa-solid fa-eye" id="toggleIcon"></i>
-              </button>
+              <button type="button" class="toggle-password" onclick="togglePassword()"><i class="fa-solid fa-eye" id="toggleIcon"></i></button>
             </div>
           </div>
           <p id="error" class="error-message"></p>
@@ -594,16 +517,8 @@ textarea.form-input { resize: vertical; min-height: 90px; }
         <div class="demo-accounts">
           <p class="demo-title">Demo Accounts:</p>
           <div class="demo-cards">
-            <div class="demo-card">
-              <span class="demo-role">Admin</span>
-              <span class="demo-email">admin@gfis.edu.ph</span>
-              <span class="demo-pass">admin123</span>
-            </div>
-            <div class="demo-card">
-              <span class="demo-role">Student</span>
-              <span class="demo-email">student@gfis.edu.ph</span>
-              <span class="demo-pass">student123</span>
-            </div>
+            <div class="demo-card"><span class="demo-role">Admin</span><span class="demo-email">admin@gfis.edu.ph</span><span class="demo-pass">admin123</span></div>
+            <div class="demo-card"><span class="demo-role">Student</span><span class="demo-email">student@gfis.edu.ph</span><span class="demo-pass">student123</span></div>
           </div>
         </div>
       </div>
@@ -611,54 +526,33 @@ textarea.form-input { resize: vertical; min-height: 90px; }
   </div>
 </div>
 
-<!-- ========== DASHBOARD ========== -->
+<!-- DASHBOARD -->
 <div id="dashboard">
   <div class="mob-overlay" id="mobOverlay" onclick="closeSidebar()"></div>
   <div class="app-wrapper">
-
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-logo">
         <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
         <span class="logo-text">SCEM</span>
       </div>
       <nav class="sidebar-nav">
-        <button class="nav-item active" onclick="showPage('dashboardPage',this)">
-          <i class="fa-solid fa-house"></i><span>Dashboard</span>
-        </button>
-        <button class="nav-item" onclick="showPage('announcementsPage',this)">
-          <i class="fa-solid fa-bullhorn"></i><span>Announcements</span>
-        </button>
-        <button class="nav-item" id="createPostNav" onclick="showPage('createPage',this)" style="display:none;">
-          <i class="fa-solid fa-pen-to-square"></i><span>Create Post</span>
-        </button>
-        <button class="nav-item" onclick="showPage('calendarPage',this)">
-          <i class="fa-solid fa-calendar-days"></i><span>Calendar</span>
-        </button>
-        <button class="nav-item" onclick="showPage('profilePage',this)">
-          <i class="fa-solid fa-circle-user"></i><span>Profile</span>
-        </button>
-        <button class="nav-item" onclick="logout()">
-          <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
-        </button>
+        <button class="nav-item active" onclick="showPage('dashboardPage',this)"><i class="fa-solid fa-house"></i><span>Dashboard</span></button>
+        <button class="nav-item" onclick="showPage('announcementsPage',this)"><i class="fa-solid fa-bullhorn"></i><span>Announcements</span></button>
+        <button class="nav-item" id="createPostNav" onclick="showPage('createPage',this)" style="display:none;"><i class="fa-solid fa-pen-to-square"></i><span>Create Post</span></button>
+        <button class="nav-item" onclick="showPage('calendarPage',this)"><i class="fa-solid fa-calendar-days"></i><span>Calendar</span></button>
+        <button class="nav-item" onclick="showPage('profilePage',this)"><i class="fa-solid fa-circle-user"></i><span>Profile</span></button>
+        <button class="nav-item" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></button>
       </nav>
       <div class="sidebar-user">
         <div class="user-avatar" id="sidebarAvatar">?</div>
-        <div class="user-info">
-          <div class="user-name" id="sidebarName"></div>
-          <div class="user-email" id="sidebarEmail"></div>
-        </div>
+        <div class="user-info"><div class="user-name" id="sidebarName"></div><div class="user-email" id="sidebarEmail"></div></div>
       </div>
     </aside>
 
     <main class="main-content">
       <div class="topbar">
-        <button class="mob-menu-btn" id="mobMenuBtn" onclick="openSidebar()" aria-label="Open menu">
-          <span></span><span></span><span></span>
-        </button>
-        <div class="mob-topbar-logo">
-          <div class="tl-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-          <span>SCEM</span>
-        </div>
+        <button class="mob-menu-btn" id="mobMenuBtn" onclick="openSidebar()"><span></span><span></span><span></span></button>
+        <div class="mob-topbar-logo"><div class="tl-icon"><i class="fa-solid fa-graduation-cap"></i></div><span>SCEM</span></div>
         <div class="search-bar">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input type="text" id="topSearch" placeholder="Search..." oninput="handleTopSearch()">
@@ -668,42 +562,23 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 
       <div class="page-content">
 
-        <!-- ===== DASHBOARD PAGE ===== -->
+        <!-- DASHBOARD PAGE -->
         <div id="dashboardPage" class="page active">
           <div class="page-header">
-            <div class="page-title-row">
-              <div class="page-icon"><i class="fa-solid fa-house"></i></div>
-              <h2 id="dashWelcome">Welcome back!</h2>
-            </div>
+            <div class="page-title-row"><div class="page-icon"><i class="fa-solid fa-house"></i></div><h2 id="dashWelcome">Welcome back!</h2></div>
             <p>Stay up-to-date with school announcements. 🌀</p>
           </div>
           <div class="stats-row">
-            <div class="stat-card">
-              <div class="stat-icon purple"><i class="fa-solid fa-bullhorn"></i></div>
-              <div class="stat-info"><div class="stat-label">Total</div><div class="stat-sublabel">Announcements</div><div class="stat-value" id="statTotal">0</div></div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon blue"><i class="fa-solid fa-briefcase"></i></div>
-              <div class="stat-info"><div class="stat-label">Today's</div><div class="stat-sublabel">Events</div><div class="stat-value" id="statToday">0</div></div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon red"><i class="fa-solid fa-clock"></i></div>
-              <div class="stat-info"><div class="stat-label">Upcoming</div><div class="stat-sublabel">Events</div><div class="stat-value" id="statUpcoming">0</div></div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon amber"><i class="fa-solid fa-box-archive"></i></div>
-              <div class="stat-info"><div class="stat-label">This Month</div><div class="stat-sublabel">Posts</div><div class="stat-value" id="statMonth">0</div></div>
-            </div>
+            <div class="stat-card"><div class="stat-icon purple"><i class="fa-solid fa-bullhorn"></i></div><div class="stat-info"><div class="stat-label">Total</div><div class="stat-sublabel">Announcements</div><div class="stat-value" id="statTotal">0</div></div></div>
+            <div class="stat-card"><div class="stat-icon blue"><i class="fa-solid fa-briefcase"></i></div><div class="stat-info"><div class="stat-label">Today's</div><div class="stat-sublabel">Events</div><div class="stat-value" id="statToday">0</div></div></div>
+            <div class="stat-card"><div class="stat-icon red"><i class="fa-solid fa-clock"></i></div><div class="stat-info"><div class="stat-label">Upcoming</div><div class="stat-sublabel">Events</div><div class="stat-value" id="statUpcoming">0</div></div></div>
+            <div class="stat-card"><div class="stat-icon amber"><i class="fa-solid fa-box-archive"></i></div><div class="stat-info"><div class="stat-label">This Month</div><div class="stat-sublabel">Posts</div><div class="stat-value" id="statMonth">0</div></div></div>
           </div>
           <div class="dashboard-grid">
             <div class="panel">
               <div class="panel-header">
                 <div class="panel-title">Latest Announcements</div>
-                <select class="sort-btn" id="dashSortSelect" onchange="renderDashList()">
-                  <option value="latest">Latest &#9662;</option>
-                  <option value="oldest">Oldest</option>
-                  <option value="az">A–Z</option>
-                </select>
+                <select class="sort-btn" id="dashSortSelect" onchange="renderDashList()"><option value="latest">Latest &#9662;</option><option value="oldest">Oldest</option><option value="az">A–Z</option></select>
               </div>
               <div class="panel-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="dashSearch" placeholder="Search announcements..." oninput="renderDashList()"></div>
               <div class="filter-tabs" id="dashFilterTabs">
@@ -731,7 +606,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
           </div>
         </div>
 
-        <!-- ===== ANNOUNCEMENTS PAGE ===== -->
+        <!-- ANNOUNCEMENTS PAGE -->
         <div id="announcementsPage" class="page">
           <div class="page-header">
             <div class="page-title-row"><div class="page-icon"><i class="fa-solid fa-bullhorn"></i></div><h2>Announcements</h2></div>
@@ -740,9 +615,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
           <div class="panel">
             <div class="panel-header">
               <div class="panel-title">All Announcements</div>
-              <select class="sort-btn" id="annSortSelect" onchange="renderAnnList()">
-                <option value="latest">Latest &#9662;</option><option value="oldest">Oldest</option><option value="az">A–Z</option>
-              </select>
+              <select class="sort-btn" id="annSortSelect" onchange="renderAnnList()"><option value="latest">Latest &#9662;</option><option value="oldest">Oldest</option><option value="az">A–Z</option></select>
             </div>
             <div class="panel-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="annSearch" placeholder="Search announcements..." oninput="renderAnnList()"></div>
             <div class="filter-tabs" id="annFilterTabs">
@@ -756,45 +629,81 @@ textarea.form-input { resize: vertical; min-height: 90px; }
           </div>
         </div>
 
-        <!-- ===== CREATE PAGE (Admin) ===== -->
+        <!-- CREATE PAGE (Admin) -->
         <div id="createPage" class="page">
           <div class="page-header">
             <div class="page-title-row"><div class="page-icon"><i class="fa-solid fa-pen-to-square"></i></div><h2 id="createPageTitle">Create Announcement</h2></div>
-            <p>Stay up-to-date with school announcements. 🌀</p>
+            <p>Fill in the details to post a new school announcement.</p>
           </div>
           <div class="create-grid">
             <div>
               <div class="create-form-panel">
-                <div class="form-section-label">Title
-                  <select class="sort-btn" id="createSortDrop" style="font-size:12px;"><option>Latest &#9662;</option></select>
-                </div>
-                <input type="text" class="form-input" id="titleInput" placeholder="Enter title...">
-                <div class="form-section-label">Description<span class="posted-hint" id="postedHint"></span></div>
+
+                <!-- Title -->
+                <div class="form-section-label"><i class="fa-solid fa-heading"></i> Title <span class="posted-hint" id="postedHint"></span></div>
+                <input type="text" class="form-input" id="titleInput" placeholder="Enter announcement title...">
+
+                <!-- Description -->
+                <div class="form-section-label"><i class="fa-solid fa-align-left"></i> Description</div>
                 <textarea class="form-input" id="descInput" placeholder="Enter description..."></textarea>
-                <div class="form-section-label">Category</div>
+
+                <!-- Category -->
+                <div class="form-section-label"><i class="fa-solid fa-layer-group"></i> Category</div>
                 <div class="category-select-wrapper">
                   <i class="fa-solid fa-layer-group cat-icon"></i>
                   <select class="form-select" id="categoryInput">
-                    <option value="Academic">Academic</option><option value="Event">Event</option>
-                    <option value="Urgent">Urgent</option><option value="General">General</option>
+                    <option value="Academic">Academic</option>
+                    <option value="Event">Event</option>
+                    <option value="Urgent">Urgent</option>
+                    <option value="General">General</option>
                   </select>
                   <i class="fa-solid fa-chevron-down select-arrow"></i>
                 </div>
-                <div class="form-section-label">Date</div>
-                <input type="date" class="form-input" id="dateInput">
-                <p class="date-hint"><i class="fa-solid fa-circle-info"></i> Only today or future dates can be selected.</p>
+
+                <!-- Date & Time -->
+                <div class="form-section-label"><i class="fa-solid fa-calendar-days"></i> Date &amp; Time</div>
+                <div class="form-row-2">
+                  <div class="form-input-icon-wrap">
+                    <i class="fa-solid fa-calendar fii"></i>
+                    <input type="date" class="form-input" id="dateInput">
+                  </div>
+                  <div class="form-input-icon-wrap">
+                    <i class="fa-solid fa-clock fii"></i>
+                    <input type="time" class="form-input" id="timeInput">
+                  </div>
+                </div>
+                <p class="date-hint"><i class="fa-solid fa-circle-info"></i> Only today or future dates can be selected. Time is optional.</p>
+
+                <hr class="form-divider">
+
+                <!-- Venue -->
+                <div class="form-section-label"><i class="fa-solid fa-location-dot"></i> Venue</div>
+                <div class="form-input-icon-wrap">
+                  <i class="fa-solid fa-location-dot fii"></i>
+                  <input type="text" class="form-input" id="venueInput" placeholder="e.g. School Gymnasium, Room 101, Online...">
+                </div>
+
+                <!-- Person in Charge -->
+                <div class="form-section-label"><i class="fa-solid fa-user-tie"></i> Person in Charge</div>
+                <div class="form-input-icon-wrap">
+                  <i class="fa-solid fa-user-tie fii"></i>
+                  <input type="text" class="form-input" id="picInput" placeholder="e.g. Mr. Juan dela Cruz, Ms. Santos...">
+                </div>
+
+                <hr class="form-divider">
+
                 <button class="post-btn" id="postBtn" onclick="addAnnouncement()">
                   <i class="fa-solid fa-bell"></i><span id="postBtnText">Post Announcement</span>
                 </button>
                 <button class="cancel-btn" id="cancelEditBtn" onclick="cancelEdit()">Cancel Edit</button>
               </div>
+
+              <!-- Manage grid below form -->
               <div style="margin-top:20px;">
                 <div class="panel">
                   <div class="panel-header">
                     <div class="panel-title">Manage Announcements</div>
-                    <select class="sort-btn" id="manageSortSelect" onchange="renderManageGrid()">
-                      <option value="latest">Sort &#9662;</option><option value="oldest">Oldest</option>
-                    </select>
+                    <select class="sort-btn" id="manageSortSelect" onchange="renderManageGrid()"><option value="latest">Sort &#9662;</option><option value="oldest">Oldest</option></select>
                   </div>
                   <div class="filter-tabs" id="manageFilterTabs">
                     <button class="filter-tab active" onclick="setFilter('manage','All',this)">All</button>
@@ -814,10 +723,10 @@ textarea.form-input { resize: vertical; min-height: 90px; }
               </div>
             </div>
 
-            <!-- RIGHT SIDEBAR – MANAGE PANEL -->
+            <!-- RIGHT PANEL -->
             <div class="manage-panel">
               <div class="manage-title">Manage Announcements</div>
-              <div class="manage-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="manageSideSearch" placeholder="Search announcements..." oninput="renderManageGrid()"></div>
+              <div class="manage-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="manageSideSearch" placeholder="Search..." oninput="renderManageGrid()"></div>
               <div class="manage-filter-row">
                 <button class="manage-filter active" onclick="setManageSideFilter('All',this)">All</button>
                 <button class="manage-filter" onclick="setManageSideFilter('Academic',this)">Academic</button>
@@ -826,15 +735,10 @@ textarea.form-input { resize: vertical; min-height: 90px; }
               </div>
               <div class="date-filter-input"><i class="fa-regular fa-calendar"></i><input type="date" id="manageDateFilter" onchange="renderManageGrid()"></div>
               <input type="file" id="imageUploadInput" accept="image/*" style="display:none;" onchange="handleImageUpload(event)">
-              <button class="upload-img-btn" onclick="document.getElementById('imageUploadInput').click()">
-                <i class="fa-solid fa-image"></i> Upload Image
-              </button>
+              <button class="upload-img-btn" onclick="document.getElementById('imageUploadInput').click()"><i class="fa-solid fa-image"></i> Upload Image</button>
               <div class="image-preview-box" id="imagePreviewBox">
                 <img id="imagePreviewImg" src="" alt="Preview">
-                <div class="image-preview-meta">
-                  <span id="imagePreviewName"></span>
-                  <button onclick="clearImage()">✕ Remove</button>
-                </div>
+                <div class="image-preview-meta"><span id="imagePreviewName"></span><button onclick="clearImage()">✕ Remove</button></div>
               </div>
               <div class="manage-actions">
                 <button class="btn-edit" style="flex:1;" onclick="editSelected()">Edit</button>
@@ -844,7 +748,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
           </div>
         </div>
 
-        <!-- ===== CALENDAR PAGE ===== -->
+        <!-- CALENDAR PAGE -->
         <div id="calendarPage" class="page">
           <div class="page-header">
             <div class="page-title-row"><div class="page-icon"><i class="fa-solid fa-calendar-days"></i></div><h2>School Events Calendar</h2></div>
@@ -853,14 +757,14 @@ textarea.form-input { resize: vertical; min-height: 90px; }
           <div class="calendar-full">
             <div class="cal-full-header">
               <button class="sort-btn" onclick="changeFullMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>
-              <div class="panel-title" id="fullCalMonth">February 2026</div>
+              <div class="panel-title" id="fullCalMonth"></div>
               <button class="sort-btn" onclick="changeFullMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
             <div class="cal-full-grid" id="fullCalGrid"></div>
           </div>
         </div>
 
-        <!-- ===== PROFILE PAGE ===== -->
+        <!-- PROFILE PAGE -->
         <div id="profilePage" class="page">
           <div class="page-header">
             <div class="page-title-row"><div class="page-icon"><i class="fa-solid fa-circle-user"></i></div><h2>Profile</h2></div>
@@ -869,10 +773,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
           <div class="profile-card">
             <div class="profile-avatar-section">
               <div class="profile-avatar-circle" id="profileAvatar">?</div>
-              <div>
-                <div class="profile-name" id="profileNameDisplay">Alex Smith</div>
-                <div class="profile-role" id="profileRoleDisplay">Student</div>
-              </div>
+              <div><div class="profile-name" id="profileNameDisplay"></div><div class="profile-role" id="profileRoleDisplay"></div></div>
             </div>
             <div class="profile-fields">
               <div class="profile-field"><label>Full Name</label><input type="text" id="pName" readonly></div>
@@ -889,30 +790,14 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 
 <div class="toast" id="toast"></div>
 
-<!-- ========== FIREBASE SDK ========== -->
+<!-- FIREBASE SDK -->
 <script type="module">
-// =============================================================
-// FIREBASE CONFIGURATION
-// Replace the values below with YOUR project's config from:
-// Firebase Console → Project Settings → Your Apps → Web App → Config
-// =============================================================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  getDoc,
-  doc,
-  updateDoc,
-  deleteDoc,
-  onSnapshot,
-  serverTimestamp,
-  query,
-  orderBy
+  getFirestore, collection, addDoc, getDoc, doc,
+  updateDoc, deleteDoc, onSnapshot, serverTimestamp, query, orderBy
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ⚠️  REPLACE THESE WITH YOUR OWN FIREBASE CONFIG ⚠️
 const firebaseConfig = {
   apiKey: "AIzaSyCL04pwmGHAEOXpJ82NyJ3enX3e2wdDTRE",
   authDomain: "scemdatabase.firebaseapp.com",
@@ -921,39 +806,35 @@ const firebaseConfig = {
   storageBucket: "scemdatabase.firebasestorage.app",
   messagingSenderId: "666834093209",
   appId: "1:666834093209:web:aa15cc4d6ba0ffdeebe408",
+  measurementId: "G-C67TCPV7NV"
 };
 
-// ===== INIT FIREBASE =====
-const app = initializeApp(firebaseConfig);
-const db  = getFirestore(app);
+const app    = initializeApp(firebaseConfig);
+const db     = getFirestore(app);
 const annCol = collection(db, "announcements");
 
-// ===== ACCOUNTS (kept client-side — fine for a school demo) =====
 const accounts = {
   "admin@gfis.edu.ph":   { password: "admin123",   role: "admin",   name: "Alex Smith" },
   "student@gfis.edu.ph": { password: "student123", role: "student", name: "Sam Rivera" }
 };
 
-// ===== STATE =====
 let userRole = "", userEmail = "", userName = "";
-let announcements = [];           // always in sync with Firestore
-let editingId     = null;         // Firestore doc ID being edited
-let filters       = { dash: "All", ann: "All", manage: "All" };
+let announcements    = [];
+let editingId        = null;
+let filters          = { dash: "All", ann: "All", manage: "All" };
 let manageSideFilter = "All";
-let calViewDate   = new Date();
-let fullCalViewDate = new Date();
-let managePage    = 1;
-const PER_PAGE    = 4;
+let calViewDate      = new Date();
+let fullCalViewDate  = new Date();
+let managePage       = 1;
+const PER_PAGE       = 4;
 let selectedManageId  = null;
 let uploadedImageData = null;
-let unsubscribe   = null;         // Firestore real-time listener
+let unsubscribe       = null;
 
 const MONTHS     = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const DAYS_SHORT = ["S","M","T","W","T","F","S"];
 const DAYS_FULL  = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-// ===== HIDE FIREBASE LOADER & SHOW LOGIN =====
-// The loader is shown while Firebase initialises. Once ready we reveal the login page.
 document.getElementById("firebaseLoader").style.display = "none";
 document.getElementById("loginPage").style.display      = "flex";
 
@@ -964,19 +845,14 @@ window.openLightbox = function(src, caption) {
   document.getElementById("lightboxOverlay").classList.add("open");
   document.body.style.overflow = "hidden";
 };
-
 window.closeLightbox = function(e) {
   if (e && e.target !== document.getElementById("lightboxOverlay")) return;
   document.getElementById("lightboxOverlay").classList.remove("open");
   document.body.style.overflow = "";
   setTimeout(() => { document.getElementById("lightboxImg").src = ""; }, 350);
 };
-
 document.addEventListener("keydown", e => {
-  if (e.key === "Escape") {
-    document.getElementById("lightboxOverlay").classList.remove("open");
-    document.body.style.overflow = "";
-  }
+  if (e.key === "Escape") { document.getElementById("lightboxOverlay").classList.remove("open"); document.body.style.overflow = ""; }
 });
 
 // ===== HELPERS =====
@@ -991,6 +867,13 @@ function catIcon(cat) {
 function todayGB()    { return new Date().toLocaleDateString("en-GB"); }
 function parseGB(str) { const p = str.split("/"); return p.length===3 ? new Date(`${p[2]}-${p[1]}-${p[0]}`) : new Date(str); }
 function fmtPosted(d) { try { return parseGB(d).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}); } catch { return d; } }
+function fmtTime(t) {
+  if (!t) return "";
+  const [h, m] = t.split(":").map(Number);
+  const ampm = h >= 12 ? "PM" : "AM";
+  const hr   = h % 12 || 12;
+  return `${hr}:${String(m).padStart(2,"0")} ${ampm}`;
+}
 
 window.showToast = function(msg) {
   const t = document.getElementById("toast");
@@ -1030,36 +913,30 @@ window.login = function() {
   userRole  = accounts[email].role;
   userEmail = email;
   userName  = accounts[email].name;
-
   const initial = userName.charAt(0).toUpperCase();
 
-  document.getElementById("loginPage").style.display  = "none";
-  document.getElementById("dashboard").style.display  = "block";
-  document.getElementById("createPostNav").style.display = userRole === "admin" ? "flex" : "none";
-
-  document.getElementById("sidebarAvatar").textContent = initial;
-  document.getElementById("sidebarName").textContent   = userName;
-  document.getElementById("sidebarEmail").textContent  = email;
-  document.getElementById("dashWelcome").textContent   = `Welcome back, ${userName.split(" ")[0]}!`;
-  document.getElementById("profileAvatar").textContent      = initial;
-  document.getElementById("profileNameDisplay").textContent = userName;
-  document.getElementById("profileRoleDisplay").textContent = userRole.charAt(0).toUpperCase() + userRole.slice(1);
+  document.getElementById("loginPage").style.display      = "none";
+  document.getElementById("dashboard").style.display      = "block";
+  document.getElementById("createPostNav").style.display  = userRole === "admin" ? "flex" : "none";
+  document.getElementById("sidebarAvatar").textContent    = initial;
+  document.getElementById("sidebarName").textContent      = userName;
+  document.getElementById("sidebarEmail").textContent     = email;
+  document.getElementById("dashWelcome").textContent      = `Welcome back, ${userName.split(" ")[0]}!`;
+  document.getElementById("profileAvatar").textContent         = initial;
+  document.getElementById("profileNameDisplay").textContent    = userName;
+  document.getElementById("profileRoleDisplay").textContent    = userRole.charAt(0).toUpperCase() + userRole.slice(1);
   document.getElementById("pName").value  = userName;
   document.getElementById("pEmail").value = email;
   document.getElementById("pRole").value  = userRole.charAt(0).toUpperCase() + userRole.slice(1);
   document.getElementById("postedHint").textContent = `Posted on ${new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})}`;
-
   enforceDateMin();
 
-  // ── Start real-time Firestore listener ──
-  // onSnapshot fires immediately with existing data AND every time any device adds/edits/deletes.
-  // This is what makes the announcements show up on all devices instantly!
-  if (unsubscribe) unsubscribe(); // detach any previous listener
-  const q = query(annCol, orderBy("createdAt", "desc"));
-  unsubscribe = onSnapshot(q, (snapshot) => {
+  if (unsubscribe) unsubscribe();
+  const q = query(annCol, orderBy("createdAt","desc"));
+  unsubscribe = onSnapshot(q, snapshot => {
     announcements = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
     renderAll();
-  }, (error) => {
+  }, error => {
     console.error("Firestore error:", error);
     showToast("⚠️ Database error. Check console.");
   });
@@ -1086,7 +963,6 @@ window.handleImageUpload = function(event) {
   if (!file) return;
   if (!file.type.startsWith("image/")) { showToast("⚠️ Please select an image file"); return; }
   if (file.size > 5 * 1024 * 1024)    { showToast("⚠️ Image must be under 5 MB"); return; }
-
   const reader = new FileReader();
   reader.onload = function(e) {
     uploadedImageData = e.target.result;
@@ -1097,71 +973,71 @@ window.handleImageUpload = function(event) {
   };
   reader.readAsDataURL(file);
 };
-
 window.clearImage = function() {
   uploadedImageData = null;
-  document.getElementById("imageUploadInput").value          = "";
-  document.getElementById("imagePreviewImg").src             = "";
-  document.getElementById("imagePreviewName").textContent    = "";
-  document.getElementById("imagePreviewBox").style.display   = "none";
+  document.getElementById("imageUploadInput").value           = "";
+  document.getElementById("imagePreviewImg").src              = "";
+  document.getElementById("imagePreviewName").textContent     = "";
+  document.getElementById("imagePreviewBox").style.display    = "none";
 };
 
-// ===== CRUD — now using Firestore instead of localStorage =====
-
+// ===== CRUD =====
 window.addAnnouncement = async function() {
   const title    = document.getElementById("titleInput").value.trim();
   const desc     = document.getElementById("descInput").value.trim();
   const category = document.getElementById("categoryInput").value;
   const dateVal  = document.getElementById("dateInput").value;
+  const timeVal  = document.getElementById("timeInput").value;
+  const venue    = document.getElementById("venueInput").value.trim();
+  const pic      = document.getElementById("picInput").value.trim();
 
   if (!title)   { showToast("Please enter a title"); return; }
   if (!dateVal) { showToast("Please select a date"); return; }
 
   const selectedDate  = new Date(dateVal);
   const todayMidnight = new Date(); todayMidnight.setHours(0,0,0,0);
-  if (selectedDate < todayMidnight) {
-    showToast("❌ Cannot set announcements in the past!");
-    enforceDateMin(); return;
-  }
+  if (selectedDate < todayMidnight) { showToast("❌ Cannot set announcements in the past!"); enforceDateMin(); return; }
 
   const formattedDate = new Date(dateVal).toLocaleDateString("en-GB");
   const postBtn = document.getElementById("postBtn");
   postBtn.disabled = true;
 
   try {
+    const data = {
+      title, desc, category,
+      date:  formattedDate,
+      time:  timeVal || "",
+      venue: venue   || "",
+      pic:   pic     || "",
+      image: uploadedImageData || null
+    };
+
     if (editingId !== null) {
-      // ── UPDATE existing Firestore document ──
-      const docRef = doc(db, "announcements", editingId);
+      const docRef  = doc(db, "announcements", editingId);
       const existing = await getDoc(docRef);
-      await updateDoc(docRef, {
-        title, desc, category, date: formattedDate,
-        image: uploadedImageData || (existing.exists() ? existing.data().image : null),
-        updatedAt: serverTimestamp()
-      });
+      data.image    = uploadedImageData || (existing.exists() ? existing.data().image : null);
+      data.updatedAt = serverTimestamp();
+      await updateDoc(docRef, data);
       editingId = null;
-      document.getElementById("postBtnText").textContent = "Post Announcement";
-      document.getElementById("cancelEditBtn").style.display = "none";
-      document.getElementById("createPageTitle").textContent = "Create Announcement";
+      document.getElementById("postBtnText").textContent      = "Post Announcement";
+      document.getElementById("cancelEditBtn").style.display  = "none";
+      document.getElementById("createPageTitle").textContent  = "Create Announcement";
       showToast("✅ Announcement updated!");
     } else {
-      // ── ADD new Firestore document ──
-      await addDoc(annCol, {
-        title, desc, category, date: formattedDate,
-        image: uploadedImageData || null,
-        createdAt: serverTimestamp()   // used for ordering
-      });
+      data.createdAt = serverTimestamp();
+      await addDoc(annCol, data);
       showToast("✅ Announcement posted!");
     }
 
-    document.getElementById("titleInput").value = "";
-    document.getElementById("descInput").value  = "";
-    document.getElementById("dateInput").value  = "";
+    // Clear all fields
+    ["titleInput","descInput","dateInput","timeInput","venueInput","picInput"].forEach(id => {
+      document.getElementById(id).value = "";
+    });
     clearImage();
     enforceDateMin();
-    // renderAll() is called automatically by the onSnapshot listener
   } catch(err) {
     console.error("Error saving:", err);
-    showToast("❌ Error saving announcement. Try again.");
+    showToast("❌ Error saving. Try again.");
   } finally {
     postBtn.disabled = false;
   }
@@ -1172,21 +1048,20 @@ window.editAnnouncement = function(id) {
   document.getElementById("titleInput").value    = a.title;
   document.getElementById("descInput").value     = a.desc;
   document.getElementById("categoryInput").value = a.category;
+  document.getElementById("timeInput").value     = a.time  || "";
+  document.getElementById("venueInput").value    = a.venue || "";
+  document.getElementById("picInput").value      = a.pic   || "";
   const p = a.date.split("/");
   document.getElementById("dateInput").value = `${p[2]}-${p[1]}-${p[0]}`;
   enforceDateMin();
-
   if (a.image) {
     uploadedImageData = a.image;
-    document.getElementById("imagePreviewImg").src          = a.image;
-    document.getElementById("imagePreviewName").textContent = "Existing image";
+    document.getElementById("imagePreviewImg").src           = a.image;
+    document.getElementById("imagePreviewName").textContent  = "Existing image";
     document.getElementById("imagePreviewBox").style.display = "block";
-  } else {
-    clearImage();
-  }
-
+  } else { clearImage(); }
   editingId = id;
-  document.getElementById("postBtnText").textContent = "Update Announcement";
+  document.getElementById("postBtnText").textContent     = "Update Announcement";
   document.getElementById("cancelEditBtn").style.display = "block";
   document.getElementById("createPageTitle").textContent = "Edit Announcement";
   showPage("createPage", document.querySelector('[onclick*="createPage"]'));
@@ -1195,12 +1070,12 @@ window.editAnnouncement = function(id) {
 
 window.cancelEdit = function() {
   editingId = null;
-  document.getElementById("titleInput").value = "";
-  document.getElementById("descInput").value  = "";
-  document.getElementById("dateInput").value  = "";
+  ["titleInput","descInput","dateInput","timeInput","venueInput","picInput"].forEach(id => {
+    document.getElementById(id).value = "";
+  });
   clearImage();
   enforceDateMin();
-  document.getElementById("postBtnText").textContent = "Post Announcement";
+  document.getElementById("postBtnText").textContent     = "Post Announcement";
   document.getElementById("cancelEditBtn").style.display = "none";
   document.getElementById("createPageTitle").textContent = "Create Announcement";
 };
@@ -1211,38 +1086,44 @@ window.deleteAnnouncement = async function(id) {
     await deleteDoc(doc(db, "announcements", id));
     if (selectedManageId === id) selectedManageId = null;
     showToast("🗑️ Deleted!");
-    // renderAll() fires automatically via onSnapshot
   } catch(err) {
     console.error("Error deleting:", err);
     showToast("❌ Error deleting. Try again.");
   }
 };
 
-// ===== FILTERS & RENDER =====
+// ===== FILTERS =====
 window.setFilter = function(scope, val, btn) {
   filters[scope] = val;
   const tabIds = { dash:"dashFilterTabs", ann:"annFilterTabs", manage:"manageFilterTabs" };
   document.querySelectorAll(`#${tabIds[scope]} .filter-tab`).forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
-  if (scope === "dash") renderDashList();
-  else if (scope === "ann") renderAnnList();
+  if (scope === "dash")      renderDashList();
+  else if (scope === "ann")  renderAnnList();
   else { managePage = 1; renderManageGrid(); }
 };
-
 window.setManageSideFilter = function(val, btn) {
   manageSideFilter = val;
   document.querySelectorAll(".manage-filter-row .manage-filter").forEach(b => b.classList.remove("active"));
   btn.classList.add("active"); managePage = 1; renderManageGrid();
 };
-
 function getFiltered(filter, sortVal, searchVal) {
   let list = [...announcements];
   if (filter !== "All") list = list.filter(a => a.category === filter);
   if (searchVal) { const q = searchVal.toLowerCase(); list = list.filter(a => a.title.toLowerCase().includes(q) || a.desc.toLowerCase().includes(q)); }
-  if (sortVal === "oldest") list.sort((a,b) => parseGB(a.date)-parseGB(b.date));
-  else if (sortVal === "az") list.sort((a,b) => a.title.localeCompare(b.title));
-  else list.sort((a,b) => parseGB(b.date)-parseGB(a.date));
+  if (sortVal === "oldest")      list.sort((a,b) => parseGB(a.date)-parseGB(b.date));
+  else if (sortVal === "az")     list.sort((a,b) => a.title.localeCompare(b.title));
+  else                           list.sort((a,b) => parseGB(b.date)-parseGB(a.date));
   return list;
+}
+
+// ===== BUILD ANNOUNCEMENT CARD =====
+function buildExtraChips(a) {
+  const chips = [];
+  if (a.time)  chips.push(`<span class="ann-extra-chip"><i class="fa-solid fa-clock"></i>${fmtTime(a.time)}</span>`);
+  if (a.venue) chips.push(`<span class="ann-extra-chip"><i class="fa-solid fa-location-dot"></i>${a.venue}</span>`);
+  if (a.pic)   chips.push(`<span class="ann-extra-chip"><i class="fa-solid fa-user-tie"></i>${a.pic}</span>`);
+  return chips.length ? `<div class="ann-extra">${chips.join("")}</div>` : "";
 }
 
 function buildAnnItem(a, showCatBadge) {
@@ -1250,12 +1131,8 @@ function buildAnnItem(a, showCatBadge) {
   const adminBtns = userRole === "admin"
     ? `<div class="ann-actions"><button class="btn-edit" onclick="editAnnouncement('${a.id}')">Edit</button><button class="btn-delete" onclick="deleteAnnouncement('${a.id}')">Delete</button></div>` : "";
   const catBadge  = showCatBadge ? `<span class="ann-cat-badge ${a.category}">${a.category}</span>` : "";
-
-  const imgHtml = a.image
-    ? `<div class="ann-img-wrap" onclick="openLightbox('${a.image}', '${a.title.replace(/'/g,"\\'")}')">
-         <img src="${a.image}" alt="${a.title}">
-         <div class="ann-img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom</div>
-       </div>` : "";
+  const imgHtml   = a.image
+    ? `<div class="ann-img-wrap" onclick="openLightbox('${a.image}','${a.title.replace(/'/g,"\\'")}')"><img src="${a.image}" alt="${a.title}"><div class="ann-img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom</div></div>` : "";
 
   const div = document.createElement("div"); div.className = "ann-item";
   div.innerHTML = `
@@ -1264,6 +1141,7 @@ function buildAnnItem(a, showCatBadge) {
       ${imgHtml}
       <div class="ann-title">${a.title}${isToday ? '<span class="today-badge">Today</span>' : ''}</div>
       <div class="ann-desc">${a.desc}</div>
+      ${buildExtraChips(a)}
       <div class="ann-meta"><span class="ann-date"><i class="fa-regular fa-clock"></i> ${a.date}</span>${catBadge}</div>
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
@@ -1280,7 +1158,7 @@ function updateStats() {
   document.getElementById("statToday").textContent    = announcements.filter(a => a.date === today).length;
   document.getElementById("statUpcoming").textContent = announcements.filter(a => parseGB(a.date) > now).length;
   const m = now.getMonth(), y = now.getFullYear();
-  document.getElementById("statMonth").textContent = announcements.filter(a => { const d = parseGB(a.date); return d.getMonth()===m && d.getFullYear()===y; }).length;
+  document.getElementById("statMonth").textContent    = announcements.filter(a => { const d = parseGB(a.date); return d.getMonth()===m && d.getFullYear()===y; }).length;
 }
 
 function renderDashList() {
@@ -1289,7 +1167,6 @@ function renderDashList() {
   if (!list.length) { c.innerHTML = '<div class="empty-state"><i class="fa-solid fa-inbox"></i><p>No announcements found</p></div>'; return; }
   list.forEach(a => c.appendChild(buildAnnItem(a, false)));
 }
-
 function renderAnnList() {
   const list = getFiltered(filters.ann, document.getElementById("annSortSelect").value, document.getElementById("annSearch").value);
   const c = document.getElementById("annListContainer"); c.innerHTML = "";
@@ -1305,7 +1182,7 @@ function renderManageGrid() {
   let list = [...announcements];
   if (cf !== "All") list = list.filter(a => a.category === cf);
   if (search) list = list.filter(a => a.title.toLowerCase().includes(search) || a.desc.toLowerCase().includes(search));
-  if (dateF) { const df = new Date(dateF).toLocaleDateString("en-GB"); list = list.filter(a => a.date === df); }
+  if (dateF)  { const df = new Date(dateF).toLocaleDateString("en-GB"); list = list.filter(a => a.date === df); }
   list.sort(sort === "oldest" ? (a,b) => parseGB(a.date)-parseGB(b.date) : (a,b) => parseGB(b.date)-parseGB(a.date));
   const totalPages = Math.max(1, Math.ceil(list.length / PER_PAGE));
   if (managePage > totalPages) managePage = totalPages;
@@ -1313,21 +1190,27 @@ function renderManageGrid() {
   document.getElementById("pageInfo").textContent = `Page ${managePage} of ${totalPages}`;
   const grid = document.getElementById("manageAnnGrid"); grid.innerHTML = "";
   if (!paged.length) { grid.innerHTML = '<div class="empty-state" style="grid-column:span 2"><i class="fa-solid fa-inbox"></i><p>No announcements</p></div>'; return; }
+
   paged.forEach(a => {
     const card = document.createElement("div");
     card.className = "manage-ann-card" + (selectedManageId === a.id ? " selected" : "");
     card.onclick = () => { selectedManageId = a.id; renderManageGrid(); };
 
     const imgThumb = a.image
-      ? `<div class="manage-thumb-wrap" onclick="event.stopPropagation();openLightbox('${a.image}', '${a.title.replace(/'/g,"\\'")}')">
-           <img src="${a.image}" alt="${a.title}">
-           <div class="ann-img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-         </div>` : "";
+      ? `<div class="manage-thumb-wrap" onclick="event.stopPropagation();openLightbox('${a.image}','${a.title.replace(/'/g,"\\'")}')"><img src="${a.image}" alt="${a.title}"><div class="ann-img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div>` : "";
+
+    // Build mini chips for manage card
+    const chipParts = [];
+    if (a.time)  chipParts.push(`<div class="manage-chip"><i class="fa-solid fa-clock"></i>${fmtTime(a.time)}</div>`);
+    if (a.venue) chipParts.push(`<div class="manage-chip"><i class="fa-solid fa-location-dot"></i>${a.venue}</div>`);
+    if (a.pic)   chipParts.push(`<div class="manage-chip"><i class="fa-solid fa-user-tie"></i>${a.pic}</div>`);
+    const chipsHtml = chipParts.length ? `<div class="manage-card-chips">${chipParts.join("")}</div>` : "";
 
     card.innerHTML = `
       ${imgThumb}
       <div class="manage-card-top"><div class="manage-card-icon ${a.category}"><i class="${catIcon(a.category)}"></i></div><div class="manage-card-title">${a.title}</div></div>
       <div class="manage-card-desc">${a.desc}</div>
+      ${chipsHtml}
       <div class="manage-posted">Posted on ${fmtPosted(a.date)}</div>
       <div class="manage-card-meta"><span class="manage-card-date"><i class="fa-regular fa-clock"></i> ${a.date}</span><span class="manage-card-cat ${a.category}">${a.category}</span></div>
       <div class="manage-card-actions">
@@ -1369,7 +1252,14 @@ function renderUpcoming() {
   upcoming.forEach(a => {
     const d = parseGB(a.date);
     const item = document.createElement("div"); item.className = "upcoming-item";
-    item.innerHTML = `<div class="upcoming-num">${d.getDate()}</div><div class="upcoming-icon"><i class="${catIcon(a.category)}"></i></div><div class="upcoming-info"><div class="upcoming-name">${a.title}</div><div class="upcoming-sub">${a.desc.slice(0,35)}${a.desc.length>35?'...':''}</div></div>`;
+    const sub = [a.time ? fmtTime(a.time) : "", a.venue || ""].filter(Boolean).join(" · ");
+    item.innerHTML = `
+      <div class="upcoming-num">${d.getDate()}</div>
+      <div class="upcoming-icon"><i class="${catIcon(a.category)}"></i></div>
+      <div class="upcoming-info">
+        <div class="upcoming-name">${a.title}</div>
+        <div class="upcoming-sub">${sub || (a.desc.slice(0,35)+(a.desc.length>35?'...':''))}</div>
+      </div>`;
     c.appendChild(item);
   });
 }
@@ -1399,7 +1289,6 @@ window.handleTopSearch = function() {
   if (q.length < 2) return;
   document.getElementById("dashSearch").value = q; renderDashList();
 };
-
 </script>
 </body>
 </html>
