@@ -124,6 +124,15 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .demo-email { font-size: 11px; color: var(--text-dark); font-weight: 500; word-break: break-all; }
 .demo-pass { font-size: 11px; color: var(--text-light); }
 
+/* ===== FIREBASE LOADING OVERLAY ===== */
+#firebaseLoader {
+  position: fixed; inset: 0; background: rgba(91,33,182,0.92); z-index: 9998;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+}
+#firebaseLoader .loader-icon { font-size: 48px; color: white; animation: spin 1s linear infinite; }
+#firebaseLoader p { color: white; font-size: 16px; font-weight: 500; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
 /* ===== DASHBOARD LAYOUT ===== */
 #dashboard { display: none; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
 .app-wrapper { display: flex; min-height: 100vh; }
@@ -372,6 +381,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 .select-arrow { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--text-light); pointer-events: none; }
 .post-btn { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 600; font-family: 'Outfit', sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(91,33,182,0.25); }
 .post-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.post-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
 /* ===== MANAGE PANEL ===== */
 .manage-panel { background: white; border-radius: 16px; padding: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
@@ -520,6 +530,12 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 </head>
 <body>
 
+<!-- ========== FIREBASE LOADING OVERLAY ========== -->
+<div id="firebaseLoader">
+  <i class="fa-solid fa-circle-notch loader-icon"></i>
+  <p>Connecting to database...</p>
+</div>
+
 <!-- ========== LIGHTBOX OVERLAY ========== -->
 <div id="lightboxOverlay" onclick="closeLightbox(event)">
   <div class="lightbox-inner" id="lightboxInner" onclick="event.stopPropagation()">
@@ -530,7 +546,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 </div>
 
 <!-- ========== LOGIN PAGE ========== -->
-<div id="loginPage">
+<div id="loginPage" style="display:none;">
   <div class="login-container">
     <div class="login-brand">
       <div class="brand-content">
@@ -767,7 +783,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
                 <div class="form-section-label">Date</div>
                 <input type="date" class="form-input" id="dateInput">
                 <p class="date-hint"><i class="fa-solid fa-circle-info"></i> Only today or future dates can be selected.</p>
-                <button class="post-btn" onclick="addAnnouncement()">
+                <button class="post-btn" id="postBtn" onclick="addAnnouncement()">
                   <i class="fa-solid fa-bell"></i><span id="postBtnText">Post Announcement</span>
                 </button>
                 <button class="cancel-btn" id="cancelEditBtn" onclick="cancelEdit()">Cancel Edit</button>
@@ -873,8 +889,46 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 
 <div class="toast" id="toast"></div>
 
-<script>
-// ===== ACCOUNTS =====
+<!-- ========== FIREBASE SDK ========== -->
+<script type="module">
+// =============================================================
+// FIREBASE CONFIGURATION
+// Replace the values below with YOUR project's config from:
+// Firebase Console → Project Settings → Your Apps → Web App → Config
+// =============================================================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+  doc,
+  updateDoc,
+  deleteDoc,
+  onSnapshot,
+  serverTimestamp,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// ⚠️  REPLACE THESE WITH YOUR OWN FIREBASE CONFIG ⚠️
+const firebaseConfig = {
+  apiKey: "AIzaSyCL04pwmGHAEOXpJ82NyJ3enX3e2wdDTRE",
+  authDomain: "scemdatabase.firebaseapp.com",
+  databaseURL: "https://scemdatabase-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "scemdatabase",
+  storageBucket: "scemdatabase.firebasestorage.app",
+  messagingSenderId: "666834093209",
+  appId: "1:666834093209:web:aa15cc4d6ba0ffdeebe408",
+};
+
+// ===== INIT FIREBASE =====
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+const annCol = collection(db, "announcements");
+
+// ===== ACCOUNTS (kept client-side — fine for a school demo) =====
 const accounts = {
   "admin@gfis.edu.ph":   { password: "admin123",   role: "admin",   name: "Alex Smith" },
   "student@gfis.edu.ph": { password: "student123", role: "student", name: "Sam Rivera" }
@@ -882,39 +936,43 @@ const accounts = {
 
 // ===== STATE =====
 let userRole = "", userEmail = "", userName = "";
-let announcements = JSON.parse(localStorage.getItem("announcements")) || [];
-let editingId = null;
-let filters = { dash: "All", ann: "All", manage: "All" };
+let announcements = [];           // always in sync with Firestore
+let editingId     = null;         // Firestore doc ID being edited
+let filters       = { dash: "All", ann: "All", manage: "All" };
 let manageSideFilter = "All";
-let calViewDate = new Date();
+let calViewDate   = new Date();
 let fullCalViewDate = new Date();
-let managePage = 1;
-const PER_PAGE = 4;
-let selectedManageId = null;
+let managePage    = 1;
+const PER_PAGE    = 4;
+let selectedManageId  = null;
 let uploadedImageData = null;
+let unsubscribe   = null;         // Firestore real-time listener
 
 const MONTHS     = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const DAYS_SHORT = ["S","M","T","W","T","F","S"];
 const DAYS_FULL  = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
+// ===== HIDE FIREBASE LOADER & SHOW LOGIN =====
+// The loader is shown while Firebase initialises. Once ready we reveal the login page.
+document.getElementById("firebaseLoader").style.display = "none";
+document.getElementById("loginPage").style.display      = "flex";
+
 // ===== LIGHTBOX =====
-function openLightbox(src, caption) {
-  const overlay = document.getElementById("lightboxOverlay");
+window.openLightbox = function(src, caption) {
   document.getElementById("lightboxImg").src = src;
   document.getElementById("lightboxCaption").textContent = caption || "";
-  overlay.classList.add("open");
+  document.getElementById("lightboxOverlay").classList.add("open");
   document.body.style.overflow = "hidden";
-}
+};
 
-function closeLightbox(e) {
+window.closeLightbox = function(e) {
   if (e && e.target !== document.getElementById("lightboxOverlay")) return;
-  const overlay = document.getElementById("lightboxOverlay");
-  overlay.classList.remove("open");
+  document.getElementById("lightboxOverlay").classList.remove("open");
   document.body.style.overflow = "";
   setTimeout(() => { document.getElementById("lightboxImg").src = ""; }, 350);
-}
+};
 
-document.addEventListener("keydown", function(e) {
+document.addEventListener("keydown", e => {
   if (e.key === "Escape") {
     document.getElementById("lightboxOverlay").classList.remove("open");
     document.body.style.overflow = "";
@@ -923,8 +981,8 @@ document.addEventListener("keydown", function(e) {
 
 // ===== HELPERS =====
 function getTodayISO() {
-  const now = new Date();
-  return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
+  const n = new Date();
+  return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,"0")}-${String(n.getDate()).padStart(2,"0")}`;
 }
 function enforceDateMin() { document.getElementById("dateInput").min = getTodayISO(); }
 function catIcon(cat) {
@@ -933,35 +991,36 @@ function catIcon(cat) {
 function todayGB()    { return new Date().toLocaleDateString("en-GB"); }
 function parseGB(str) { const p = str.split("/"); return p.length===3 ? new Date(`${p[2]}-${p[1]}-${p[0]}`) : new Date(str); }
 function fmtPosted(d) { try { return parseGB(d).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}); } catch { return d; } }
-function showToast(msg) {
+
+window.showToast = function(msg) {
   const t = document.getElementById("toast");
   t.textContent = msg; t.classList.add("show");
   setTimeout(() => t.classList.remove("show"), 2600);
-}
+};
 
-/* ── MOBILE SIDEBAR ── */
-function openSidebar() {
+// ===== MOBILE SIDEBAR =====
+window.openSidebar = function() {
   document.getElementById("sidebar").classList.add("open");
   document.getElementById("mobOverlay").classList.add("show");
   document.getElementById("mobMenuBtn").classList.add("is-open");
   document.body.style.overflow = "hidden";
-}
-function closeSidebar() {
+};
+window.closeSidebar = function() {
   document.getElementById("sidebar").classList.remove("open");
   document.getElementById("mobOverlay").classList.remove("show");
   document.getElementById("mobMenuBtn").classList.remove("is-open");
   document.body.style.overflow = "";
-}
+};
 
-/* ── AUTH ── */
-function togglePassword() {
+// ===== AUTH =====
+window.togglePassword = function() {
   const p = document.getElementById("password");
   const i = document.getElementById("toggleIcon");
   p.type = p.type === "password" ? "text" : "password";
   i.classList.toggle("fa-eye"); i.classList.toggle("fa-eye-slash");
-}
+};
 
-function login() {
+window.login = function() {
   const email = document.getElementById("email").value.trim();
   const pwd   = document.getElementById("password").value.trim();
   const err   = document.getElementById("error");
@@ -991,23 +1050,38 @@ function login() {
   document.getElementById("postedHint").textContent = `Posted on ${new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})}`;
 
   enforceDateMin();
-  renderAll();
-}
 
-function logout() { location.reload(); }
+  // ── Start real-time Firestore listener ──
+  // onSnapshot fires immediately with existing data AND every time any device adds/edits/deletes.
+  // This is what makes the announcements show up on all devices instantly!
+  if (unsubscribe) unsubscribe(); // detach any previous listener
+  const q = query(annCol, orderBy("createdAt", "desc"));
+  unsubscribe = onSnapshot(q, (snapshot) => {
+    announcements = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderAll();
+  }, (error) => {
+    console.error("Firestore error:", error);
+    showToast("⚠️ Database error. Check console.");
+  });
+};
 
-/* ── NAVIGATION ── */
-function showPage(pageId, btn) {
+window.logout = function() {
+  if (unsubscribe) { unsubscribe(); unsubscribe = null; }
+  location.reload();
+};
+
+// ===== NAVIGATION =====
+window.showPage = function(pageId, btn) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
   document.getElementById(pageId).classList.add("active");
   if (btn) btn.classList.add("active");
   closeSidebar();
   renderAll();
-}
+};
 
-/* ── IMAGE UPLOAD ── */
-function handleImageUpload(event) {
+// ===== IMAGE UPLOAD =====
+window.handleImageUpload = function(event) {
   const file = event.target.files[0];
   if (!file) return;
   if (!file.type.startsWith("image/")) { showToast("⚠️ Please select an image file"); return; }
@@ -1022,18 +1096,19 @@ function handleImageUpload(event) {
     showToast("✅ Image attached!");
   };
   reader.readAsDataURL(file);
-}
+};
 
-function clearImage() {
+window.clearImage = function() {
   uploadedImageData = null;
   document.getElementById("imageUploadInput").value          = "";
   document.getElementById("imagePreviewImg").src             = "";
   document.getElementById("imagePreviewName").textContent    = "";
   document.getElementById("imagePreviewBox").style.display   = "none";
-}
+};
 
-/* ── CRUD ── */
-function addAnnouncement() {
+// ===== CRUD — now using Firestore instead of localStorage =====
+
+window.addAnnouncement = async function() {
   const title    = document.getElementById("titleInput").value.trim();
   const desc     = document.getElementById("descInput").value.trim();
   const category = document.getElementById("categoryInput").value;
@@ -1050,30 +1125,49 @@ function addAnnouncement() {
   }
 
   const formattedDate = new Date(dateVal).toLocaleDateString("en-GB");
+  const postBtn = document.getElementById("postBtn");
+  postBtn.disabled = true;
 
-  if (editingId !== null) {
-    const idx = announcements.findIndex(a => a.id === editingId);
-    if (idx !== -1) announcements[idx] = { id: editingId, title, desc, category, date: formattedDate, image: uploadedImageData || announcements[idx].image };
-    editingId = null;
-    document.getElementById("postBtnText").textContent = "Post Announcement";
-    document.getElementById("cancelEditBtn").style.display = "none";
-    document.getElementById("createPageTitle").textContent = "Create Announcement";
-    showToast("✅ Announcement updated!");
-  } else {
-    announcements.push({ id: Date.now(), title, desc, category, date: formattedDate, image: uploadedImageData || null });
-    showToast("✅ Announcement posted!");
+  try {
+    if (editingId !== null) {
+      // ── UPDATE existing Firestore document ──
+      const docRef = doc(db, "announcements", editingId);
+      const existing = await getDoc(docRef);
+      await updateDoc(docRef, {
+        title, desc, category, date: formattedDate,
+        image: uploadedImageData || (existing.exists() ? existing.data().image : null),
+        updatedAt: serverTimestamp()
+      });
+      editingId = null;
+      document.getElementById("postBtnText").textContent = "Post Announcement";
+      document.getElementById("cancelEditBtn").style.display = "none";
+      document.getElementById("createPageTitle").textContent = "Create Announcement";
+      showToast("✅ Announcement updated!");
+    } else {
+      // ── ADD new Firestore document ──
+      await addDoc(annCol, {
+        title, desc, category, date: formattedDate,
+        image: uploadedImageData || null,
+        createdAt: serverTimestamp()   // used for ordering
+      });
+      showToast("✅ Announcement posted!");
+    }
+
+    document.getElementById("titleInput").value = "";
+    document.getElementById("descInput").value  = "";
+    document.getElementById("dateInput").value  = "";
+    clearImage();
+    enforceDateMin();
+    // renderAll() is called automatically by the onSnapshot listener
+  } catch(err) {
+    console.error("Error saving:", err);
+    showToast("❌ Error saving announcement. Try again.");
+  } finally {
+    postBtn.disabled = false;
   }
+};
 
-  localStorage.setItem("announcements", JSON.stringify(announcements));
-  document.getElementById("titleInput").value = "";
-  document.getElementById("descInput").value  = "";
-  document.getElementById("dateInput").value  = "";
-  clearImage();
-  enforceDateMin();
-  renderAll();
-}
-
-function editAnnouncement(id) {
+window.editAnnouncement = function(id) {
   const a = announcements.find(x => x.id === id); if (!a) return;
   document.getElementById("titleInput").value    = a.title;
   document.getElementById("descInput").value     = a.desc;
@@ -1097,9 +1191,9 @@ function editAnnouncement(id) {
   document.getElementById("createPageTitle").textContent = "Edit Announcement";
   showPage("createPage", document.querySelector('[onclick*="createPage"]'));
   document.querySelector(".create-form-panel").scrollIntoView({ behavior: "smooth" });
-}
+};
 
-function cancelEdit() {
+window.cancelEdit = function() {
   editingId = null;
   document.getElementById("titleInput").value = "";
   document.getElementById("descInput").value  = "";
@@ -1109,18 +1203,23 @@ function cancelEdit() {
   document.getElementById("postBtnText").textContent = "Post Announcement";
   document.getElementById("cancelEditBtn").style.display = "none";
   document.getElementById("createPageTitle").textContent = "Create Announcement";
-}
+};
 
-function deleteAnnouncement(id) {
+window.deleteAnnouncement = async function(id) {
   if (!confirm("Delete this announcement?")) return;
-  announcements = announcements.filter(a => a.id !== id);
-  if (selectedManageId === id) selectedManageId = null;
-  localStorage.setItem("announcements", JSON.stringify(announcements));
-  showToast("🗑️ Deleted!"); renderAll();
-}
+  try {
+    await deleteDoc(doc(db, "announcements", id));
+    if (selectedManageId === id) selectedManageId = null;
+    showToast("🗑️ Deleted!");
+    // renderAll() fires automatically via onSnapshot
+  } catch(err) {
+    console.error("Error deleting:", err);
+    showToast("❌ Error deleting. Try again.");
+  }
+};
 
-/* ── FILTERS & RENDER ── */
-function setFilter(scope, val, btn) {
+// ===== FILTERS & RENDER =====
+window.setFilter = function(scope, val, btn) {
   filters[scope] = val;
   const tabIds = { dash:"dashFilterTabs", ann:"annFilterTabs", manage:"manageFilterTabs" };
   document.querySelectorAll(`#${tabIds[scope]} .filter-tab`).forEach(b => b.classList.remove("active"));
@@ -1128,13 +1227,13 @@ function setFilter(scope, val, btn) {
   if (scope === "dash") renderDashList();
   else if (scope === "ann") renderAnnList();
   else { managePage = 1; renderManageGrid(); }
-}
+};
 
-function setManageSideFilter(val, btn) {
+window.setManageSideFilter = function(val, btn) {
   manageSideFilter = val;
   document.querySelectorAll(".manage-filter-row .manage-filter").forEach(b => b.classList.remove("active"));
   btn.classList.add("active"); managePage = 1; renderManageGrid();
-}
+};
 
 function getFiltered(filter, sortVal, searchVal) {
   let list = [...announcements];
@@ -1146,19 +1245,17 @@ function getFiltered(filter, sortVal, searchVal) {
   return list;
 }
 
-/* ── BUILD ANN ITEM (with zoomable image) ── */
 function buildAnnItem(a, showCatBadge) {
   const isToday   = a.date === todayGB();
   const adminBtns = userRole === "admin"
-    ? `<div class="ann-actions"><button class="btn-edit" onclick="editAnnouncement(${a.id})">Edit</button><button class="btn-delete" onclick="deleteAnnouncement(${a.id})">Delete</button></div>` : "";
+    ? `<div class="ann-actions"><button class="btn-edit" onclick="editAnnouncement('${a.id}')">Edit</button><button class="btn-delete" onclick="deleteAnnouncement('${a.id}')">Delete</button></div>` : "";
   const catBadge  = showCatBadge ? `<span class="ann-cat-badge ${a.category}">${a.category}</span>` : "";
 
   const imgHtml = a.image
     ? `<div class="ann-img-wrap" onclick="openLightbox('${a.image}', '${a.title.replace(/'/g,"\\'")}')">
          <img src="${a.image}" alt="${a.title}">
          <div class="ann-img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom</div>
-       </div>`
-    : "";
+       </div>` : "";
 
   const div = document.createElement("div"); div.className = "ann-item";
   div.innerHTML = `
@@ -1225,8 +1322,7 @@ function renderManageGrid() {
       ? `<div class="manage-thumb-wrap" onclick="event.stopPropagation();openLightbox('${a.image}', '${a.title.replace(/'/g,"\\'")}')">
            <img src="${a.image}" alt="${a.title}">
            <div class="ann-img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-         </div>`
-      : "";
+         </div>` : "";
 
     card.innerHTML = `
       ${imgThumb}
@@ -1235,16 +1331,16 @@ function renderManageGrid() {
       <div class="manage-posted">Posted on ${fmtPosted(a.date)}</div>
       <div class="manage-card-meta"><span class="manage-card-date"><i class="fa-regular fa-clock"></i> ${a.date}</span><span class="manage-card-cat ${a.category}">${a.category}</span></div>
       <div class="manage-card-actions">
-        <button class="btn-sm-edit" onclick="event.stopPropagation();editAnnouncement(${a.id})">Edit</button>
-        <button class="btn-sm-delete" onclick="event.stopPropagation();deleteAnnouncement(${a.id})">Delete</button>
+        <button class="btn-sm-edit" onclick="event.stopPropagation();editAnnouncement('${a.id}')">Edit</button>
+        <button class="btn-sm-delete" onclick="event.stopPropagation();deleteAnnouncement('${a.id}')">Delete</button>
       </div>`;
     grid.appendChild(card);
   });
 }
 
-function changeMPage(dir) { managePage += dir; if (managePage < 1) managePage = 1; renderManageGrid(); }
-function editSelected()   { if (!selectedManageId) { showToast("Select an announcement first"); return; } editAnnouncement(selectedManageId); }
-function deleteSelected() { if (!selectedManageId) { showToast("Select an announcement first"); return; } deleteAnnouncement(selectedManageId); }
+window.changeMPage    = function(dir) { managePage += dir; if (managePage < 1) managePage = 1; renderManageGrid(); };
+window.editSelected   = function()   { if (!selectedManageId) { showToast("Select an announcement first"); return; } editAnnouncement(selectedManageId); };
+window.deleteSelected = function()   { if (!selectedManageId) { showToast("Select an announcement first"); return; } deleteAnnouncement(selectedManageId); };
 
 function renderMiniCal() {
   const y = calViewDate.getFullYear(), m = calViewDate.getMonth(), today = new Date();
@@ -1263,7 +1359,7 @@ function renderMiniCal() {
     grid.appendChild(el);
   }
 }
-function changeMonth(dir) { calViewDate.setMonth(calViewDate.getMonth()+dir); renderMiniCal(); }
+window.changeMonth = function(dir) { calViewDate.setMonth(calViewDate.getMonth()+dir); renderMiniCal(); };
 
 function renderUpcoming() {
   const now = new Date();
@@ -1296,13 +1392,14 @@ function renderFullCal() {
     grid.appendChild(cell);
   }
 }
-function changeFullMonth(dir) { fullCalViewDate.setMonth(fullCalViewDate.getMonth()+dir); renderFullCal(); }
+window.changeFullMonth = function(dir) { fullCalViewDate.setMonth(fullCalViewDate.getMonth()+dir); renderFullCal(); };
 
-function handleTopSearch() {
+window.handleTopSearch = function() {
   const q = document.getElementById("topSearch").value.toLowerCase();
   if (q.length < 2) return;
   document.getElementById("dashSearch").value = q; renderDashList();
-}
+};
+
 </script>
 </body>
 </html>
