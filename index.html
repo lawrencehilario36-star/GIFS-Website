@@ -146,14 +146,7 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .auth-switch a { color: var(--primary); font-weight: 600; cursor: pointer; text-decoration: none; }
 .auth-switch a:hover { text-decoration: underline; }
 
-/* Role selector */
-.role-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
-.role-option { padding: 12px; border: 2px solid #e5e7eb; border-radius: 11px; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; gap: 6px; background: #fafafa; }
-.role-option:hover { border-color: var(--primary-light); background: #faf5ff; }
-.role-option.selected { border-color: var(--primary); background: #ede9fe; }
-.role-option i { font-size: 20px; color: var(--primary); }
-.role-option span { font-size: 13px; font-weight: 600; color: var(--text-dark); }
-.role-option small { font-size: 11px; color: var(--text-light); text-align: center; }
+
 
 /* ===== LOADING SCREEN ===== */
 #loadingScreen {
@@ -716,7 +709,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
         <!-- SIGN UP PANEL -->
         <div class="auth-panel" id="signupPanel">
           <div class="auth-panel-title">Create Account</div>
-          <div class="auth-panel-sub">Register with your GFIS school email</div>
+          <div class="auth-panel-sub">Register with your GFIS school email as a Student</div>
           <div id="signupError" class="error-msg"><i class="fa-solid fa-circle-exclamation"></i><span></span></div>
           <div id="signupSuccess" class="success-msg"><i class="fa-solid fa-circle-check"></i><span></span></div>
           <div class="form-row-2">
@@ -750,22 +743,6 @@ textarea.form-input { resize: vertical; min-height: 90px; }
             <div class="password-wrapper">
               <input type="password" id="suConfirm" placeholder="Repeat password">
               <button type="button" class="toggle-password" onclick="togglePw('suConfirm','suCfIcon')"><i class="fa-solid fa-eye" id="suCfIcon"></i></button>
-            </div>
-          </div>
-          <!-- Role selector -->
-          <div style="margin-bottom:16px;">
-            <div style="font-size:13px;font-weight:600;color:var(--text-dark);margin-bottom:8px;display:flex;align-items:center;gap:6px;"><i class="fa-solid fa-id-badge" style="color:var(--primary);font-size:13px;"></i> Account Type</div>
-            <div class="role-selector">
-              <div class="role-option selected" id="roleStudent" onclick="selectRole('student')">
-                <i class="fa-solid fa-graduation-cap"></i>
-                <span>Student</span>
-                <small>View announcements</small>
-              </div>
-              <div class="role-option" id="roleAdmin" onclick="selectRole('admin')">
-                <i class="fa-solid fa-shield-halved"></i>
-                <span>Admin</span>
-                <small>Post & manage</small>
-              </div>
             </div>
           </div>
           <button class="auth-btn" id="signupBtn" onclick="doSignUp()"><i class="fa-solid fa-user-plus"></i> Create Account</button>
@@ -1073,18 +1050,11 @@ const PER_PAGE       = 4;
 let selectedManageId  = null;
 let uploadedImageData = null;
 let unsubscribeAnn    = null;
-let selectedRole      = "student";
+let selectedRole      = "student"; // Always student — admin is set manually in Firestore
 
 const MONTHS     = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const DAYS_SHORT = ["S","M","T","W","T","F","S"];
 const DAYS_FULL  = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-
-// ===== ROLE SELECTOR =====
-window.selectRole = function(role) {
-  selectedRole = role;
-  document.getElementById("roleStudent").classList.toggle("selected", role === "student");
-  document.getElementById("roleAdmin").classList.toggle("selected", role === "admin");
-};
 
 // ===== AUTH TABS =====
 window.switchTab = function(tab) {
