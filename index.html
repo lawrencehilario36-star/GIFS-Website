@@ -14,7 +14,7 @@
   --accent: #f59e0b;
   --academic: #2563eb;
   --event: #7c3aed;
-  --urgent: #ef4444;
+  --outside-campus: #059669;
   --general: #6b7280;
   --bg-light: #faf5ff;
   --text-dark: #1f2937;
@@ -53,8 +53,6 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
   animation: slideUp 0.6s ease-out;
 }
 @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-/* Brand side */
 .auth-brand {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
   color: var(--white); padding: 60px 40px; position: relative; overflow: hidden;
@@ -89,13 +87,9 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .shape-2 { width: 150px; height: 150px; bottom: 50px; left: -50px; animation: rotate 20s linear infinite reverse; }
 .shape-3 { width: 200px; height: 200px; top: 50%; right: -80px; animation: rotate 25s linear infinite; }
 @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-/* Form side */
 .auth-form-section { padding: 50px; display: flex; align-items: center; justify-content: center; background: var(--white); overflow-y: auto; max-height: 100vh; }
 .auth-box { width: 100%; max-width: 420px; animation: fadeIn 0.8s ease-out 0.4s both; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-/* Tabs */
 .auth-tabs { display: flex; background: #f3f4f6; border-radius: 12px; padding: 4px; margin-bottom: 28px; }
 .auth-tab {
   flex: 1; padding: 10px; border: none; border-radius: 9px; background: none;
@@ -104,14 +98,10 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 }
 .auth-tab.active { background: white; color: var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
 .auth-tab i { font-size: 13px; }
-
-/* Form panels */
 .auth-panel { display: none; }
 .auth-panel.active { display: block; }
 .auth-panel-title { font-size: 26px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
 .auth-panel-sub { color: var(--text-light); font-size: 14px; margin-bottom: 28px; }
-
-/* Input groups */
 .input-group { margin-bottom: 16px; }
 .input-group label { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 7px; }
 .input-group label i { color: var(--primary); font-size: 13px; }
@@ -128,7 +118,7 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .domain-hint { font-size: 12px; color: var(--text-light); margin-top: 5px; display: flex; align-items: center; gap: 4px; }
 .domain-hint i { color: var(--accent); font-size: 11px; }
-.error-msg { color: var(--urgent); font-size: 13px; background: #fee2e2; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; display: none; align-items: center; gap: 8px; }
+.error-msg { color: #ef4444; font-size: 13px; background: #fee2e2; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; display: none; align-items: center; gap: 8px; }
 .error-msg.show { display: flex; }
 .error-msg i { flex-shrink: 0; }
 .success-msg { color: #059669; font-size: 13px; background: #d1fae5; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; display: none; align-items: center; gap: 8px; }
@@ -145,8 +135,6 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .auth-switch { text-align: center; margin-top: 20px; font-size: 14px; color: var(--text-light); }
 .auth-switch a { color: var(--primary); font-weight: 600; cursor: pointer; text-decoration: none; }
 .auth-switch a:hover { text-decoration: underline; }
-
-
 
 /* ===== LOADING SCREEN ===== */
 #loadingScreen {
@@ -218,7 +206,7 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .stat-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
 .stat-icon.purple { background: #ede9fe; color: var(--primary); }
 .stat-icon.blue { background: #dbeafe; color: var(--academic); }
-.stat-icon.red { background: #fee2e2; color: var(--urgent); }
+.stat-icon.red { background: #fee2e2; color: #ef4444; }
 .stat-icon.amber { background: #fef3c7; color: var(--accent); }
 .stat-info { flex: 1; }
 .stat-label { font-size: 12px; color: var(--text-light); font-weight: 500; }
@@ -242,12 +230,36 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 
 /* ===== ANN LIST ===== */
 .ann-list { display: flex; flex-direction: column; gap: 10px; }
-.ann-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px; border-radius: 12px; background: #fafafa; border: 1.5px solid #f0f0f0; transition: all 0.2s; }
+
+/* ===== PINNED SECTION ===== */
+.pinned-section { margin-bottom: 20px; }
+.pinned-section-header {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  padding: 8px 14px; background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-radius: 10px; border: 1.5px solid #f59e0b;
+}
+.pinned-section-header i { color: #d97706; font-size: 14px; }
+.pinned-section-header span { font-size: 13px; font-weight: 700; color: #92400e; letter-spacing: 0.3px; }
+
+.ann-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px; border-radius: 12px; background: #fafafa; border: 1.5px solid #f0f0f0; transition: all 0.2s; position: relative; }
 .ann-item:hover { border-color: var(--primary-light); background: white; box-shadow: 0 2px 12px rgba(91,33,182,0.08); }
+.ann-item.pinned-item { background: #fffbeb; border-color: #fde68a; border-left: 3px solid #f59e0b; }
+.ann-item.pinned-item:hover { border-color: #f59e0b; box-shadow: 0 2px 12px rgba(245,158,11,0.15); }
+
+/* Pin badge on items */
+.pin-badge {
+  position: absolute; top: -1px; right: 14px;
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  color: white; font-size: 10px; font-weight: 700; padding: 3px 8px;
+  border-radius: 0 0 8px 8px; display: flex; align-items: center; gap: 4px;
+  box-shadow: 0 2px 6px rgba(245,158,11,0.3);
+}
+.pin-badge i { font-size: 9px; }
+
 .ann-cat-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
 .ann-cat-icon.Academic { background: #dbeafe; color: var(--academic); }
 .ann-cat-icon.Event { background: #ede9fe; color: var(--event); }
-.ann-cat-icon.Urgent { background: #fee2e2; color: var(--urgent); }
+.ann-cat-icon.OutsideCampus { background: #d1fae5; color: var(--outside-campus); }
 .ann-cat-icon.General { background: #f3f4f6; color: var(--general); }
 .ann-body { flex: 1; min-width: 0; }
 .ann-title { font-size: 15px; font-weight: 600; color: var(--text-dark); margin-bottom: 3px; }
@@ -261,14 +273,25 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 .ann-cat-badge { font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 20px; }
 .ann-cat-badge.Academic { background: #dbeafe; color: var(--academic); }
 .ann-cat-badge.Event { background: #ede9fe; color: var(--event); }
-.ann-cat-badge.Urgent { background: #fee2e2; color: var(--urgent); }
+.ann-cat-badge.OutsideCampus { background: #d1fae5; color: var(--outside-campus); }
 .ann-cat-badge.General { background: #f3f4f6; color: var(--general); }
 .ann-posted { font-size: 12px; color: var(--text-light); white-space: nowrap; flex-shrink: 0; }
-.ann-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; margin-top: 2px; }
+.ann-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; margin-top: 2px; flex-wrap: wrap; justify-content: flex-end; }
 .btn-edit { padding: 6px 14px; border-radius: 8px; border: 1.5px solid #e5e7eb; background: white; color: var(--text-dark); font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
 .btn-edit:hover { border-color: var(--primary-light); color: var(--primary); }
 .btn-delete { padding: 6px 14px; border-radius: 8px; border: none; background: var(--primary); color: white; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
 .btn-delete:hover { background: var(--primary-dark); }
+
+/* Pin toggle button */
+.btn-pin {
+  padding: 6px 12px; border-radius: 8px; border: 1.5px solid #e5e7eb;
+  background: white; color: var(--text-light); font-size: 13px; font-weight: 500;
+  cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s;
+  display: flex; align-items: center; gap: 5px;
+}
+.btn-pin:hover { border-color: #f59e0b; color: #d97706; background: #fffbeb; }
+.btn-pin.pinned { border-color: #f59e0b; background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; }
+.btn-pin.pinned:hover { background: #fee2e2; border-color: #ef4444; color: #ef4444; }
 
 /* ===== IMAGES ===== */
 .ann-img-wrap { position: relative; width: 100%; margin-bottom: 8px; border-radius: 8px; overflow: hidden; cursor: zoom-in; }
@@ -289,7 +312,7 @@ body { font-family: 'Outfit', sans-serif; background: var(--bg-light); color: va
 #lightboxOverlay.open .lightbox-inner { transform: scale(1) translateY(0); opacity: 1; }
 .lightbox-inner img { max-width: 90vw; max-height: 82vh; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); display: block; object-fit: contain; user-select: none; }
 .lightbox-close { position: absolute; top: -14px; right: -14px; width: 36px; height: 36px; background: white; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--text-dark); box-shadow: 0 4px 14px rgba(0,0,0,0.3); transition: transform 0.2s ease, background 0.2s; z-index: 2; }
-.lightbox-close:hover { background: var(--urgent); color: white; transform: scale(1.1) rotate(90deg); }
+.lightbox-close:hover { background: #ef4444; color: white; transform: scale(1.1) rotate(90deg); }
 .lightbox-caption { margin-top: 12px; text-align: center; color: rgba(255,255,255,0.75); font-size: 13px; }
 
 /* ===== CALENDAR SIDEBAR ===== */
@@ -340,6 +363,25 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 .post-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
 .post-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
+/* Pin toggle in create form */
+.pin-toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; background: #f9fafb; border: 1.5px solid #e5e7eb;
+  border-radius: 10px; margin-bottom: 16px; cursor: pointer; transition: all 0.2s;
+}
+.pin-toggle-row:hover { border-color: #f59e0b; background: #fffbeb; }
+.pin-toggle-row.active { border-color: #f59e0b; background: linear-gradient(135deg, #fffbeb, #fef3c7); }
+.pin-toggle-left { display: flex; align-items: center; gap: 10px; }
+.pin-toggle-left i { color: #d97706; font-size: 16px; }
+.pin-toggle-label { font-size: 14px; font-weight: 600; color: var(--text-dark); }
+.pin-toggle-sub { font-size: 12px; color: var(--text-light); }
+.toggle-switch { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; inset: 0; background: #d1d5db; border-radius: 24px; cursor: pointer; transition: background 0.2s; }
+.toggle-slider:before { content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: transform 0.2s; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+.toggle-switch input:checked + .toggle-slider { background: #f59e0b; }
+.toggle-switch input:checked + .toggle-slider:before { transform: translateX(20px); }
+
 /* ===== MANAGE PANEL ===== */
 .manage-panel { background: white; border-radius: 16px; padding: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
 .manage-title { font-size: 16px; font-weight: 700; color: var(--text-dark); margin-bottom: 16px; }
@@ -357,16 +399,19 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 .upload-img-btn:hover { border-color: var(--primary-light); color: var(--primary); background: #faf5ff; }
 .manage-actions { display: flex; gap: 8px; }
 .manage-ann-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-.manage-ann-card { background: white; border-radius: 12px; padding: 14px; border: 1.5px solid #f0f0f0; transition: all 0.2s; cursor: pointer; }
+.manage-ann-card { background: white; border-radius: 12px; padding: 14px; border: 1.5px solid #f0f0f0; transition: all 0.2s; cursor: pointer; position: relative; }
 .manage-ann-card:hover { border-color: var(--primary-light); box-shadow: 0 2px 12px rgba(91,33,182,0.08); }
 .manage-ann-card.selected { border-color: var(--primary); background: #faf5ff; }
+.manage-ann-card.is-pinned { border-left: 3px solid #f59e0b; background: #fffbeb; }
+.manage-ann-card.is-pinned.selected { background: #fff8e1; }
+.manage-pin-indicator { position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
 .manage-card-top { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
 .manage-card-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
 .manage-card-icon.Academic { background: #dbeafe; color: var(--academic); }
 .manage-card-icon.Event { background: #ede9fe; color: var(--event); }
-.manage-card-icon.Urgent { background: #fee2e2; color: var(--urgent); }
+.manage-card-icon.OutsideCampus { background: #d1fae5; color: var(--outside-campus); }
 .manage-card-icon.General { background: #f3f4f6; color: var(--general); }
-.manage-card-title { font-size: 13px; font-weight: 600; color: var(--text-dark); line-height: 1.3; }
+.manage-card-title { font-size: 13px; font-weight: 600; color: var(--text-dark); line-height: 1.3; padding-right: 20px; }
 .manage-card-desc { font-size: 12px; color: var(--text-light); margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .manage-posted { font-size: 11px; color: var(--text-light); margin-bottom: 6px; }
 .manage-card-chips { display: flex; flex-direction: column; gap: 3px; margin-bottom: 8px; }
@@ -377,11 +422,14 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 .manage-card-cat { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
 .manage-card-cat.Academic { background: #dbeafe; color: var(--academic); }
 .manage-card-cat.Event { background: #ede9fe; color: var(--event); }
-.manage-card-cat.Urgent { background: #fee2e2; color: var(--urgent); }
+.manage-card-cat.OutsideCampus { background: #d1fae5; color: var(--outside-campus); }
 .manage-card-cat.General { background: #f3f4f6; color: var(--general); }
-.manage-card-actions { display: flex; gap: 6px; }
+.manage-card-actions { display: flex; gap: 6px; flex-wrap: wrap; }
 .btn-sm-edit { flex: 1; padding: 5px 10px; border: 1.5px solid #e5e7eb; border-radius: 6px; background: white; color: var(--text-dark); font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
 .btn-sm-edit:hover { border-color: var(--primary-light); color: var(--primary); }
+.btn-sm-pin { flex: 1; padding: 5px 10px; border: 1.5px solid #e5e7eb; border-radius: 6px; background: white; color: var(--text-light); font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 4px; }
+.btn-sm-pin:hover { border-color: #f59e0b; color: #d97706; background: #fffbeb; }
+.btn-sm-pin.active { background: #fef3c7; border-color: #f59e0b; color: #92400e; }
 .btn-sm-delete { flex: 1; padding: 5px 10px; border: none; border-radius: 6px; background: #ef4444; color: white; font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
 .btn-sm-delete:hover { background: #dc2626; }
 .pagination-row { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; padding-top: 14px; border-top: 1px solid #f0f0f0; }
@@ -404,7 +452,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 .cell-event { font-size: 10px; padding: 2px 6px; border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
 .cell-event.Academic { background: #dbeafe; color: var(--academic); }
 .cell-event.Event { background: #ede9fe; color: var(--event); }
-.cell-event.Urgent { background: #fee2e2; color: var(--urgent); }
+.cell-event.OutsideCampus { background: #d1fae5; color: var(--outside-campus); }
 .cell-event.General { background: #f3f4f6; color: var(--general); }
 
 /* ===== PROFILE ===== */
@@ -432,14 +480,14 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 .toast { position: fixed; bottom: 24px; right: 24px; background: var(--primary); color: white; padding: 14px 22px; border-radius: 12px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 24px rgba(91,33,182,0.3); z-index: 999; transform: translateY(80px); opacity: 0; transition: all 0.3s ease; }
 .toast.show { transform: translateY(0); opacity: 1; }
 .cancel-btn { width: 100%; padding: 10px; border: 1.5px solid #e5e7eb; border-radius: 10px; background: white; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--text-light); margin-top: 10px; transition: all 0.2s; display: none; }
-.cancel-btn:hover { border-color: var(--urgent); color: var(--urgent); }
+.cancel-btn:hover { border-color: #ef4444; color: #ef4444; }
 .date-hint { font-size: 12px; color: var(--text-light); margin-top: -12px; margin-bottom: 16px; display: flex; align-items: center; gap: 5px; }
 .date-hint i { color: var(--accent); font-size: 11px; }
 .image-preview-box { display: none; margin-bottom: 12px; border-radius: 10px; overflow: hidden; border: 1.5px solid #e5e7eb; }
 .image-preview-box img { width: 100%; max-height: 140px; object-fit: cover; display: block; }
 .image-preview-meta { display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: #f9fafb; }
 .image-preview-meta span { font-size: 12px; color: var(--text-light); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 160px; }
-.image-preview-meta button { background: none; border: none; color: var(--urgent); font-size: 12px; cursor: pointer; font-family: 'Outfit', sans-serif; flex-shrink: 0; }
+.image-preview-meta button { background: none; border: none; color: #ef4444; font-size: 12px; cursor: pointer; font-family: 'Outfit', sans-serif; flex-shrink: 0; }
 .form-divider { border: none; border-top: 1.5px dashed #e5e7eb; margin: 20px 0 18px; }
 
 /* ===== FEATURES MODAL ===== */
@@ -454,7 +502,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 .modal-title { font-size: 22px; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
 .modal-subtitle { font-size: 14px; color: var(--text-light); }
 .modal-close { width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #e5e7eb; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--text-light); transition: all 0.2s; flex-shrink: 0; }
-.modal-close:hover { background: #fee2e2; border-color: #fca5a5; color: var(--urgent); }
+.modal-close:hover { background: #fee2e2; border-color: #fca5a5; color: #ef4444; }
 .features-section-title { font-size: 12px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; margin-top: 24px; }
 .features-section-title:first-of-type { margin-top: 0; }
 .feature-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -464,7 +512,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 .feature-card-icon.purple { background: #ede9fe; color: var(--primary); }
 .feature-card-icon.blue { background: #dbeafe; color: var(--academic); }
 .feature-card-icon.amber { background: #fef3c7; color: var(--accent); }
-.feature-card-icon.red { background: #fee2e2; color: var(--urgent); }
+.feature-card-icon.red { background: #fee2e2; color: #ef4444; }
 .feature-card-icon.green { background: #d1fae5; color: #059669; }
 .feature-card-icon.gray { background: #f3f4f6; color: var(--general); }
 .feature-card-name { font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 3px; }
@@ -479,62 +527,30 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 .got-it-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
 
 /* ===== BIRTHDAY MODAL ===== */
-#birthdayModal {
-  position: fixed; inset: 0; z-index: 10001; display: flex; align-items: center; justify-content: center;
-  padding: 20px; background: rgba(0,0,0,0); pointer-events: none; visibility: hidden; transition: background 0.4s ease;
-}
+#birthdayModal { position: fixed; inset: 0; z-index: 10001; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(0,0,0,0); pointer-events: none; visibility: hidden; transition: background 0.4s ease; }
 #birthdayModal.open { background: rgba(0,0,0,0.65); pointer-events: all; visibility: visible; }
-.birthday-modal-inner {
-  background: white; border-radius: 28px; width: 100%; max-width: 480px; padding: 40px 36px;
-  text-align: center; position: relative; overflow: hidden;
-  transform: scale(0.7) translateY(40px); opacity: 0;
-  transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s ease;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.35);
-}
+.birthday-modal-inner { background: white; border-radius: 28px; width: 100%; max-width: 480px; padding: 40px 36px; text-align: center; position: relative; overflow: hidden; transform: scale(0.7) translateY(40px); opacity: 0; transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s ease; box-shadow: 0 40px 80px rgba(0,0,0,0.35); }
 #birthdayModal.open .birthday-modal-inner { transform: scale(1) translateY(0); opacity: 1; }
-.birthday-confetti-bg {
-  position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: 28px;
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 30%, #ede9fe 60%, #dbeafe 100%);
-  opacity: 0.4;
-}
+.birthday-confetti-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: 28px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 30%, #ede9fe 60%, #dbeafe 100%); opacity: 0.4; }
 .birthday-emoji { font-size: 72px; margin-bottom: 16px; display: block; animation: bdBounce 1s ease infinite alternate; }
 @keyframes bdBounce { from { transform: scale(1) rotate(-5deg); } to { transform: scale(1.1) rotate(5deg); } }
 .birthday-modal-title { font-size: 30px; font-weight: 800; color: var(--primary-dark); margin-bottom: 8px; position: relative; }
 .birthday-modal-name { font-size: 22px; font-weight: 700; color: var(--primary-light); margin-bottom: 12px; position: relative; }
 .birthday-modal-msg { font-size: 15px; color: var(--text-light); margin-bottom: 28px; line-height: 1.6; position: relative; }
-.birthday-modal-btn {
-  padding: 13px 36px; background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white;
-  border: none; border-radius: 14px; font-size: 15px; font-weight: 700; cursor: pointer;
-  font-family: 'Outfit', sans-serif; transition: all 0.3s; box-shadow: 0 4px 16px rgba(245,158,11,0.4);
-  position: relative;
-}
+.birthday-modal-btn { padding: 13px 36px; background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; border: none; border-radius: 14px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.3s; box-shadow: 0 4px 16px rgba(245,158,11,0.4); position: relative; }
 .birthday-modal-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,158,11,0.5); }
 .bd-sparkle { position: absolute; width: 8px; height: 8px; border-radius: 50%; animation: sparkle 2s ease-in-out infinite; }
-@keyframes sparkle {
-  0%,100% { opacity: 0; transform: scale(0); }
-  50% { opacity: 1; transform: scale(1); }
-}
+@keyframes sparkle { 0%,100% { opacity: 0; transform: scale(0); } 50% { opacity: 1; transform: scale(1); } }
 
-/* ===== BIRTHDAY BANNER (dashboard notification for all users) ===== */
-#birthdayBanner {
-  display: none; margin-bottom: 20px; border-radius: 16px; overflow: hidden;
-  box-shadow: 0 4px 20px rgba(245,158,11,0.2); animation: slideDown 0.5s ease-out;
-}
+/* ===== BIRTHDAY BANNER ===== */
+#birthdayBanner { display: none; margin-bottom: 20px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(245,158,11,0.2); animation: slideDown 0.5s ease-out; }
 @keyframes slideDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
-.bd-banner-inner {
-  background: linear-gradient(135deg, #fffbeb, #fef3c7, #ede9fe);
-  border: 2px solid #fde68a; border-radius: 16px; padding: 16px 20px;
-  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-}
+.bd-banner-inner { background: linear-gradient(135deg, #fffbeb, #fef3c7, #ede9fe); border: 2px solid #fde68a; border-radius: 16px; padding: 16px 20px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .bd-banner-icon { font-size: 32px; flex-shrink: 0; animation: bdBounce 1.2s ease infinite alternate; }
 .bd-banner-text { flex: 1; min-width: 0; }
 .bd-banner-title { font-size: 15px; font-weight: 700; color: #92400e; margin-bottom: 2px; }
 .bd-banner-names { font-size: 13px; color: #b45309; font-weight: 500; }
-.bd-banner-close {
-  width: 28px; height: 28px; border-radius: 8px; border: none; background: rgba(245,158,11,0.15);
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  color: #b45309; font-size: 14px; transition: all 0.2s; flex-shrink: 0;
-}
+.bd-banner-close { width: 28px; height: 28px; border-radius: 8px; border: none; background: rgba(245,158,11,0.15); cursor: pointer; display: flex; align-items: center; justify-content: center; color: #b45309; font-size: 14px; transition: all 0.2s; flex-shrink: 0; }
 .bd-banner-close:hover { background: rgba(245,158,11,0.3); }
 
 /* ===== RESPONSIVE ===== */
@@ -617,32 +633,31 @@ textarea.form-input { resize: vertical; min-height: 90px; }
       <div class="feature-card"><div class="feature-card-icon blue"><i class="fa-solid fa-bullhorn"></i></div><div><div class="feature-card-name">Announcements</div><div class="feature-card-desc">Browse all school announcements. Filter by category and sort by date or name.</div></div></div>
       <div class="feature-card"><div class="feature-card-icon amber"><i class="fa-solid fa-calendar-days"></i></div><div><div class="feature-card-name">Calendar</div><div class="feature-card-desc">Full monthly calendar view showing all events mapped to their dates.</div></div></div>
       <div class="feature-card"><div class="feature-card-icon green"><i class="fa-solid fa-magnifying-glass"></i></div><div><div class="feature-card-name">Search & Filter</div><div class="feature-card-desc">Search announcements by keyword and use category filters to narrow results.</div></div></div>
-      <div class="feature-card"><div class="feature-card-icon red"><i class="fa-solid fa-bell"></i></div><div><div class="feature-card-name">Categories</div><div class="feature-card-desc"><strong>Academic</strong>, <strong>Event</strong>, <strong>Urgent</strong>, and <strong>General</strong> announcement types.</div></div></div>
+      <div class="feature-card"><div class="feature-card-icon red"><i class="fa-solid fa-bell"></i></div><div><div class="feature-card-name">Categories</div><div class="feature-card-desc"><strong>Academic</strong>, <strong>Event</strong>, and <strong>Outside Campus</strong> announcement types.</div></div></div>
       <div class="feature-card"><div class="feature-card-icon gray"><i class="fa-solid fa-circle-user"></i></div><div><div class="feature-card-name">Profile</div><div class="feature-card-desc">View your account info including name, email, role, and birthday.</div></div></div>
     </div>
     <div class="features-section-title">🛠️ Admin-Only Features</div>
     <div class="feature-cards-grid">
       <div class="feature-card"><div class="feature-card-icon purple"><i class="fa-solid fa-pen-to-square"></i></div><div><div class="feature-card-name">Create Post</div><div class="feature-card-desc">Post announcements with title, description, category, date, time, venue, and person in charge.</div></div></div>
+      <div class="feature-card"><div class="feature-card-icon amber"><i class="fa-solid fa-thumbtack"></i></div><div><div class="feature-card-name">Pin Announcements</div><div class="feature-card-desc">Pin important announcements so they always appear at the top of the list for all users.</div></div></div>
       <div class="feature-card"><div class="feature-card-icon blue"><i class="fa-solid fa-image"></i></div><div><div class="feature-card-name">Image Uploads</div><div class="feature-card-desc">Attach images to announcements (max 5 MB). Viewable full-screen.</div></div></div>
-      <div class="feature-card"><div class="feature-card-icon amber"><i class="fa-solid fa-pencil"></i></div><div><div class="feature-card-name">Edit Announcements</div><div class="feature-card-desc">Edit existing announcements including details, category, date, or image.</div></div></div>
       <div class="feature-card"><div class="feature-card-icon red"><i class="fa-solid fa-trash"></i></div><div><div class="feature-card-name">Delete Announcements</div><div class="feature-card-desc">Remove announcements permanently from the manage grid.</div></div></div>
     </div>
     <div class="admin-only-note">
       <i class="fa-solid fa-shield-halved"></i>
-      <p><strong>Admin accounts</strong> have full access to create, edit, and delete announcements. <strong>Student accounts</strong> can view and search all content but cannot post or modify it.</p>
+      <p><strong>Admin accounts</strong> have full access to create, edit, pin, and delete announcements. <strong>Student accounts</strong> can view and search all content but cannot post or modify it.</p>
     </div>
     <div class="modal-footer">
-      <div class="modal-footer-tip"><i class="fa-solid fa-lightbulb"></i> Tip: Click the <strong>?</strong> button in the top bar anytime to reopen this guide.</div>
+      <div class="modal-footer-tip"><i class="fa-solid fa-lightbulb"></i> Tip: Click the <strong>?</strong> button anytime to reopen this guide.</div>
       <button class="got-it-btn" onclick="closeFeaturesModal()">Got it! 👍</button>
     </div>
   </div>
 </div>
 
-<!-- BIRTHDAY MODAL (personal greeting) -->
+<!-- BIRTHDAY MODAL -->
 <div id="birthdayModal">
   <div class="birthday-modal-inner">
     <div class="birthday-confetti-bg"></div>
-    <!-- Sparkles -->
     <div class="bd-sparkle" style="top:12%;left:8%;background:#f59e0b;animation-delay:0s;"></div>
     <div class="bd-sparkle" style="top:20%;right:10%;background:#7c3aed;animation-delay:0.4s;"></div>
     <div class="bd-sparkle" style="bottom:18%;left:14%;background:#ec4899;animation-delay:0.8s;"></div>
@@ -675,16 +690,13 @@ textarea.form-input { resize: vertical; min-height: 90px; }
         <div class="shape shape-1"></div><div class="shape shape-2"></div><div class="shape shape-3"></div>
       </div>
     </div>
-
     <div class="auth-form-section">
       <div class="auth-box">
-        <!-- TABS -->
         <div class="auth-tabs">
           <button class="auth-tab active" id="tabSignIn" onclick="switchTab('signin')"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
           <button class="auth-tab" id="tabSignUp" onclick="switchTab('signup')"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
         </div>
-
-        <!-- SIGN IN PANEL -->
+        <!-- SIGN IN -->
         <div class="auth-panel active" id="signinPanel">
           <div class="auth-panel-title">Welcome Back!</div>
           <div class="auth-panel-sub">Sign in with your GFIS school email</div>
@@ -705,8 +717,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
           <button class="auth-btn" id="signinBtn" onclick="doSignIn()"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
           <div class="auth-switch">Don't have an account? <a onclick="switchTab('signup')">Sign Up here</a></div>
         </div>
-
-        <!-- SIGN UP PANEL -->
+        <!-- SIGN UP -->
         <div class="auth-panel" id="signupPanel">
           <div class="auth-panel-title">Create Account</div>
           <div class="auth-panel-sub">Register with your GFIS school email as a Student</div>
@@ -780,9 +791,10 @@ textarea.form-input { resize: vertical; min-height: 90px; }
       <div class="topbar">
         <button class="mob-menu-btn" id="mobMenuBtn" onclick="openSidebar()"><span></span><span></span><span></span></button>
         <div class="mob-topbar-logo"><div class="tl-icon"><i class="fa-solid fa-bullhorn"></i></div><span>SCEM</span></div>
-        <div class="search-bar">
+        <div class="search-bar" id="topSearchBar">
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" id="topSearch" placeholder="Search..." oninput="handleTopSearch()">
+          <input type="text" id="topSearch" placeholder="Search announcements..." oninput="handleTopSearch()" onkeydown="if(event.key==='Enter')submitTopSearch()">
+          <button id="topSearchClear" onclick="clearTopSearch()" style="display:none;background:none;border:none;cursor:pointer;color:var(--text-light);padding:2px 4px;font-size:13px;line-height:1;" title="Clear"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <button class="help-btn" onclick="openFeaturesModal()" title="Website Guide"><i class="fa-solid fa-question"></i></button>
       </div>
@@ -795,7 +807,6 @@ textarea.form-input { resize: vertical; min-height: 90px; }
             <div class="page-title-row"><div class="page-icon"><i class="fa-solid fa-house"></i></div><h2 id="dashWelcome">Welcome back!</h2></div>
             <p>Stay up-to-date with school announcements. 📢</p>
           </div>
-          <!-- BIRTHDAY BANNER (for all users) -->
           <div id="birthdayBanner">
             <div class="bd-banner-inner">
               <span class="bd-banner-icon">🎂</span>
@@ -806,12 +817,11 @@ textarea.form-input { resize: vertical; min-height: 90px; }
               <button class="bd-banner-close" onclick="document.getElementById('birthdayBanner').style.display='none'" title="Dismiss"><i class="fa-solid fa-xmark"></i></button>
             </div>
           </div>
-
           <div class="stats-row">
             <div class="stat-card"><div class="stat-icon purple"><i class="fa-solid fa-bullhorn"></i></div><div class="stat-info"><div class="stat-label">Total</div><div class="stat-sublabel">Announcements</div><div class="stat-value" id="statTotal">0</div></div></div>
             <div class="stat-card"><div class="stat-icon blue"><i class="fa-solid fa-briefcase"></i></div><div class="stat-info"><div class="stat-label">Today's</div><div class="stat-sublabel">Events</div><div class="stat-value" id="statToday">0</div></div></div>
             <div class="stat-card"><div class="stat-icon red"><i class="fa-solid fa-clock"></i></div><div class="stat-info"><div class="stat-label">Upcoming</div><div class="stat-sublabel">Events</div><div class="stat-value" id="statUpcoming">0</div></div></div>
-            <div class="stat-card"><div class="stat-icon amber"><i class="fa-solid fa-box-archive"></i></div><div class="stat-info"><div class="stat-label">This Month</div><div class="stat-sublabel">Posts</div><div class="stat-value" id="statMonth">0</div></div></div>
+            <div class="stat-card"><div class="stat-icon amber"><i class="fa-solid fa-thumbtack"></i></div><div class="stat-info"><div class="stat-label">Pinned</div><div class="stat-sublabel">Announcements</div><div class="stat-value" id="statPinned">0</div></div></div>
           </div>
           <div class="dashboard-grid">
             <div class="panel">
@@ -819,12 +829,12 @@ textarea.form-input { resize: vertical; min-height: 90px; }
                 <div class="panel-title">Latest Announcements</div>
                 <select class="sort-btn" id="dashSortSelect" onchange="renderDashList()"><option value="latest">Latest ▾</option><option value="oldest">Oldest</option><option value="az">A–Z</option></select>
               </div>
-              <div class="panel-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="dashSearch" placeholder="Search announcements..." oninput="renderDashList()"></div>
+              <div class="panel-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="dashSearch" placeholder="Search announcements..." oninput="syncSearchFromPanel('dash')"></div>
               <div class="filter-tabs" id="dashFilterTabs">
                 <button class="filter-tab active" onclick="setFilter('dash','All',this)">All</button>
                 <button class="filter-tab" onclick="setFilter('dash','Academic',this)">Academic</button>
                 <button class="filter-tab" onclick="setFilter('dash','Event',this)">Events</button>
-                <button class="filter-tab" onclick="setFilter('dash','Urgent',this)">Urgent</button>
+                <button class="filter-tab" onclick="setFilter('dash','OutsideCampus',this)">Outside Campus</button>
               </div>
               <div class="ann-list" id="dashAnnList"></div>
             </div>
@@ -856,13 +866,12 @@ textarea.form-input { resize: vertical; min-height: 90px; }
               <div class="panel-title">All Announcements</div>
               <select class="sort-btn" id="annSortSelect" onchange="renderAnnList()"><option value="latest">Latest ▾</option><option value="oldest">Oldest</option><option value="az">A–Z</option></select>
             </div>
-            <div class="panel-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="annSearch" placeholder="Search announcements..." oninput="renderAnnList()"></div>
+            <div class="panel-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="annSearch" placeholder="Search announcements..." oninput="syncSearchFromPanel('ann')"></div>
             <div class="filter-tabs" id="annFilterTabs">
               <button class="filter-tab active" onclick="setFilter('ann','All',this)">All</button>
               <button class="filter-tab" onclick="setFilter('ann','Academic',this)">Academic</button>
               <button class="filter-tab" onclick="setFilter('ann','Event',this)">Events</button>
-              <button class="filter-tab" onclick="setFilter('ann','Urgent',this)">Urgent</button>
-              <button class="filter-tab" onclick="setFilter('ann','General',this)">General</button>
+              <button class="filter-tab" onclick="setFilter('ann','OutsideCampus',this)">Outside Campus</button>
             </div>
             <div class="ann-list" id="annListContainer"></div>
           </div>
@@ -884,7 +893,11 @@ textarea.form-input { resize: vertical; min-height: 90px; }
                 <div class="form-section-label"><i class="fa-solid fa-layer-group"></i> Category</div>
                 <div class="category-select-wrapper">
                   <i class="fa-solid fa-layer-group cat-icon"></i>
-                  <select class="form-select" id="categoryInput"><option value="Academic">Academic</option><option value="Event">Event</option><option value="Urgent">Urgent</option><option value="General">General</option></select>
+                  <select class="form-select" id="categoryInput">
+                    <option value="Academic">Academic</option>
+                    <option value="Event">Event</option>
+                    <option value="OutsideCampus">Outside Campus</option>
+                  </select>
                   <i class="fa-solid fa-chevron-down select-arrow"></i>
                 </div>
                 <div class="form-section-label"><i class="fa-solid fa-calendar-days"></i> Date &amp; Time</div>
@@ -899,6 +912,22 @@ textarea.form-input { resize: vertical; min-height: 90px; }
                 <div class="form-section-label"><i class="fa-solid fa-user-tie"></i> Person in Charge</div>
                 <div class="form-input-icon-wrap"><i class="fa-solid fa-user-tie fii"></i><input type="text" class="form-input" id="picInput" placeholder="e.g. Mr. Juan dela Cruz..."></div>
                 <hr class="form-divider">
+                <!-- PIN TOGGLE -->
+                <div class="form-section-label"><i class="fa-solid fa-thumbtack"></i> Pin Announcement</div>
+                <div class="pin-toggle-row" id="pinToggleRow" onclick="togglePinInput()">
+                  <div class="pin-toggle-left">
+                    <i class="fa-solid fa-thumbtack"></i>
+                    <div>
+                      <div class="pin-toggle-label">Pin to top</div>
+                      <div class="pin-toggle-sub">Pinned posts always appear first for all users</div>
+                    </div>
+                  </div>
+                  <label class="toggle-switch" onclick="event.stopPropagation()">
+                    <input type="checkbox" id="pinInput" onchange="syncPinToggleRow()">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <hr class="form-divider">
                 <button class="post-btn" id="postBtn" onclick="addAnnouncement()"><i class="fa-solid fa-bell"></i><span id="postBtnText">Post Announcement</span></button>
                 <button class="cancel-btn" id="cancelEditBtn" onclick="cancelEdit()">Cancel Edit</button>
               </div>
@@ -912,7 +941,7 @@ textarea.form-input { resize: vertical; min-height: 90px; }
                     <button class="filter-tab active" onclick="setFilter('manage','All',this)">All</button>
                     <button class="filter-tab" onclick="setFilter('manage','Academic',this)">Academic</button>
                     <button class="filter-tab" onclick="setFilter('manage','Event',this)">Events</button>
-                    <button class="filter-tab" onclick="setFilter('manage','Urgent',this)">Urgent</button>
+                    <button class="filter-tab" onclick="setFilter('manage','OutsideCampus',this)">Outside Campus</button>
                   </div>
                   <div class="manage-ann-grid" id="manageAnnGrid"></div>
                   <div class="pagination-row">
@@ -926,13 +955,13 @@ textarea.form-input { resize: vertical; min-height: 90px; }
               </div>
             </div>
             <div class="manage-panel">
-              <div class="manage-title">Manage Announcements</div>
+              <div class="manage-title">Quick Actions</div>
               <div class="manage-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="manageSideSearch" placeholder="Search..." oninput="renderManageGrid()"></div>
               <div class="manage-filter-row">
                 <button class="manage-filter active" onclick="setManageSideFilter('All',this)">All</button>
                 <button class="manage-filter" onclick="setManageSideFilter('Academic',this)">Academic</button>
                 <button class="manage-filter" onclick="setManageSideFilter('Event',this)">Events</button>
-                <button class="manage-filter" onclick="setManageSideFilter('Urgent',this)">Urgent</button>
+                <button class="manage-filter" onclick="setManageSideFilter('OutsideCampus',this)">Outside</button>
               </div>
               <div class="date-filter-input"><i class="fa-regular fa-calendar"></i><input type="date" id="manageDateFilter" onchange="renderManageGrid()"></div>
               <input type="file" id="imageUploadInput" accept="image/*" style="display:none;" onchange="handleImageUpload(event)">
@@ -980,26 +1009,11 @@ textarea.form-input { resize: vertical; min-height: 90px; }
               </div>
             </div>
             <div class="profile-fields">
-              <div class="profile-field">
-                <div class="profile-field-label"><i class="fa-solid fa-user"></i> Full Name</div>
-                <div class="profile-field-value" id="pName">—</div>
-              </div>
-              <div class="profile-field">
-                <div class="profile-field-label"><i class="fa-solid fa-envelope"></i> Email</div>
-                <div class="profile-field-value" id="pEmail">—</div>
-              </div>
-              <div class="profile-field">
-                <div class="profile-field-label"><i class="fa-solid fa-id-badge"></i> Role</div>
-                <div class="profile-field-value" id="pRole">—</div>
-              </div>
-              <div class="profile-field birthday-highlight">
-                <div class="profile-field-label"><i class="fa-solid fa-cake-candles"></i> Birthday</div>
-                <div class="profile-field-value" id="pBirthday">—</div>
-              </div>
-              <div class="profile-field full-width">
-                <div class="profile-field-label"><i class="fa-solid fa-at"></i> School ID</div>
-                <div class="profile-field-value" id="pUid" style="font-size:12px;word-break:break-all;color:var(--text-light);">—</div>
-              </div>
+              <div class="profile-field"><div class="profile-field-label"><i class="fa-solid fa-user"></i> Full Name</div><div class="profile-field-value" id="pName">—</div></div>
+              <div class="profile-field"><div class="profile-field-label"><i class="fa-solid fa-envelope"></i> Email</div><div class="profile-field-value" id="pEmail">—</div></div>
+              <div class="profile-field"><div class="profile-field-label"><i class="fa-solid fa-id-badge"></i> Role</div><div class="profile-field-value" id="pRole">—</div></div>
+              <div class="profile-field birthday-highlight"><div class="profile-field-label"><i class="fa-solid fa-cake-candles"></i> Birthday</div><div class="profile-field-value" id="pBirthday">—</div></div>
+              <div class="profile-field full-width"><div class="profile-field-label"><i class="fa-solid fa-at"></i> School ID</div><div class="profile-field-value" id="pUid" style="font-size:12px;word-break:break-all;color:var(--text-light);">—</div></div>
             </div>
           </div>
         </div>
@@ -1050,7 +1064,6 @@ const PER_PAGE       = 4;
 let selectedManageId  = null;
 let uploadedImageData = null;
 let unsubscribeAnn    = null;
-let selectedRole      = "student"; // Always student — admin is set manually in Firestore
 
 const MONTHS     = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const DAYS_SHORT = ["S","M","T","W","T","F","S"];
@@ -1082,7 +1095,6 @@ function showAuthSuccess(id, msg) {
   el.classList.add("show");
 }
 
-// ===== PASSWORD TOGGLE =====
 window.togglePw = function(inputId, iconId) {
   const p = document.getElementById(inputId);
   const i = document.getElementById(iconId);
@@ -1090,22 +1102,17 @@ window.togglePw = function(inputId, iconId) {
   i.classList.toggle("fa-eye"); i.classList.toggle("fa-eye-slash");
 };
 
-// ===== SIGN IN =====
 window.doSignIn = async function() {
   const email = document.getElementById("siEmail").value.trim();
   const pwd   = document.getElementById("siPassword").value;
   clearAuthErrors();
-
   if (!email) { showAuthError("signinError", "Please enter your email address."); return; }
   if (!email.endsWith("@gfis.edu.ph")) { showAuthError("signinError", "Only @gfis.edu.ph email addresses are allowed."); return; }
   if (!pwd)   { showAuthError("signinError", "Please enter your password."); return; }
-
   const btn = document.getElementById("signinBtn");
   btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Signing in...';
-
   try {
     await signInWithEmailAndPassword(auth, email, pwd);
-    // onAuthStateChanged will handle the rest
   } catch(err) {
     const msgs = {
       "auth/invalid-credential": "Incorrect email or password.",
@@ -1120,7 +1127,6 @@ window.doSignIn = async function() {
   }
 };
 
-// ===== SIGN UP =====
 window.doSignUp = async function() {
   const firstName = document.getElementById("suFirstName").value.trim();
   const lastName  = document.getElementById("suLastName").value.trim();
@@ -1129,7 +1135,6 @@ window.doSignUp = async function() {
   const pwd       = document.getElementById("suPassword").value;
   const confirm   = document.getElementById("suConfirm").value;
   clearAuthErrors();
-
   if (!firstName || !lastName) { showAuthError("signupError", "Please enter your first and last name."); return; }
   if (!email)    { showAuthError("signupError", "Please enter your school email."); return; }
   if (!email.endsWith("@gfis.edu.ph")) { showAuthError("signupError", "Only @gfis.edu.ph email addresses are allowed."); return; }
@@ -1137,41 +1142,28 @@ window.doSignUp = async function() {
   if (!pwd)      { showAuthError("signupError", "Please enter a password."); return; }
   if (pwd.length < 6) { showAuthError("signupError", "Password must be at least 6 characters."); return; }
   if (pwd !== confirm) { showAuthError("signupError", "Passwords do not match."); return; }
-
   const btn = document.getElementById("signupBtn");
   btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Creating account...';
-
   try {
     const cred = await createUserWithEmailAndPassword(auth, email, pwd);
     const uid  = cred.user.uid;
-    const fullName = `${firstName} ${lastName}`;
-
-    // Save user profile to Firestore
     await setDoc(doc(db, "users", uid), {
-      name:     fullName,
-      email:    email,
-      birthday: birthday,
-      role:     selectedRole,
-      createdAt: serverTimestamp()
+      name: `${firstName} ${lastName}`, email, birthday, role: "student", createdAt: serverTimestamp()
     });
-
     showAuthSuccess("signupSuccess", `Account created! Welcome, ${firstName}! Signing you in...`);
-    // onAuthStateChanged will auto-login
   } catch(err) {
     const msgs = {
-      "auth/email-already-in-use": "An account with this email already exists. Please sign in.",
+      "auth/email-already-in-use": "An account with this email already exists.",
       "auth/invalid-email": "Invalid email address.",
-      "auth/weak-password": "Password is too weak. Use at least 6 characters."
+      "auth/weak-password": "Password is too weak."
     };
     showAuthError("signupError", msgs[err.code] || "Sign up failed. Please try again.");
     btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Create Account';
   }
 };
 
-// ===== AUTH STATE LISTENER (auto-login / session restore) =====
 onAuthStateChanged(auth, async (user) => {
   if (user) {
-    // User is logged in — load their profile from Firestore
     try {
       const profileSnap = await getDoc(doc(db, "users", user.uid));
       if (profileSnap.exists()) {
@@ -1183,7 +1175,6 @@ onAuthStateChanged(auth, async (user) => {
         currentUid   = user.uid;
         initDashboard();
       } else {
-        // Profile doc missing — sign out
         await signOut(auth);
         showLoading(false);
       }
@@ -1192,7 +1183,6 @@ onAuthStateChanged(auth, async (user) => {
       showLoading(false);
     }
   } else {
-    // Not logged in — show auth page
     showLoading(false);
   }
 });
@@ -1210,27 +1200,24 @@ function initDashboard() {
   document.getElementById("loadingScreen").style.display = "none";
   document.getElementById("authPage").style.display      = "none";
   document.getElementById("dashboard").style.display     = "block";
-
-  const initial = userName.charAt(0).toUpperCase();
+  const initial   = userName.charAt(0).toUpperCase();
   const roleLabel = userRole.charAt(0).toUpperCase() + userRole.slice(1);
   const bdFormatted = userBirthday ? formatBirthday(userBirthday) : "Not set";
-
-  document.getElementById("sidebarAvatar").textContent          = initial;
-  document.getElementById("sidebarName").textContent            = userName;
-  document.getElementById("sidebarEmail").textContent           = userEmail;
-  document.getElementById("dashWelcome").textContent            = `Welcome back, ${userName.split(" ")[0]}!`;
-  document.getElementById("createPostNav").style.display        = userRole === "admin" ? "flex" : "none";
-  document.getElementById("profileAvatar").textContent          = initial;
-  document.getElementById("profileNameDisplay").textContent     = userName;
-  document.getElementById("profileRoleDisplay").textContent     = roleLabel;
-  document.getElementById("pName").textContent                  = userName;
-  document.getElementById("pEmail").textContent                 = userEmail;
-  document.getElementById("pRole").textContent                  = roleLabel;
-  document.getElementById("pBirthday").textContent              = bdFormatted;
-  document.getElementById("pUid").textContent                   = currentUid;
-  document.getElementById("postedHint").textContent             = `Posted on ${new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})}`;
+  document.getElementById("sidebarAvatar").textContent       = initial;
+  document.getElementById("sidebarName").textContent         = userName;
+  document.getElementById("sidebarEmail").textContent        = userEmail;
+  document.getElementById("dashWelcome").textContent         = `Welcome back, ${userName.split(" ")[0]}!`;
+  document.getElementById("createPostNav").style.display     = userRole === "admin" ? "flex" : "none";
+  document.getElementById("profileAvatar").textContent       = initial;
+  document.getElementById("profileNameDisplay").textContent  = userName;
+  document.getElementById("profileRoleDisplay").textContent  = roleLabel;
+  document.getElementById("pName").textContent               = userName;
+  document.getElementById("pEmail").textContent              = userEmail;
+  document.getElementById("pRole").textContent               = roleLabel;
+  document.getElementById("pBirthday").textContent           = bdFormatted;
+  document.getElementById("pUid").textContent                = currentUid;
+  document.getElementById("postedHint").textContent          = `Posted on ${new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})}`;
   enforceDateMin();
-
   if (unsubscribeAnn) unsubscribeAnn();
   const q = query(annCol, orderBy("createdAt","desc"));
   unsubscribeAnn = onSnapshot(q, snapshot => {
@@ -1240,20 +1227,16 @@ function initDashboard() {
     console.error("Firestore error:", error);
     showToast("⚠️ Database error.");
   });
-
-  // Check birthdays after a short delay
   setTimeout(checkAllBirthdays, 1200);
 }
 
 function formatBirthday(iso) {
-  // iso = "YYYY-MM-DD"
   if (!iso) return "Not set";
   const [y, m, d] = iso.split("-");
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   return `${months[parseInt(m,10)-1]} ${parseInt(d,10)}, ${y}`;
 }
 
-// ===== BIRTHDAY CHECK =====
 function isBirthdayToday(isoDate) {
   if (!isoDate) return false;
   const today = new Date();
@@ -1266,7 +1249,6 @@ function showBirthdayModal(name) {
   document.getElementById("birthdayModal").classList.add("open");
   document.body.style.overflow = "hidden";
 }
-
 window.closeBirthdayModal = function() {
   document.getElementById("birthdayModal").classList.remove("open");
   document.body.style.overflow = "";
@@ -1274,71 +1256,42 @@ window.closeBirthdayModal = function() {
 
 async function checkAllBirthdays() {
   try {
-    // Fetch all user profiles to find today's birthdays
     const usersSnap = await getDocs(collection(db, "users"));
     const todayBirthdays = [];
     usersSnap.forEach(d => {
       const p = d.data();
-      if (p.birthday && isBirthdayToday(p.birthday)) {
-        todayBirthdays.push(p.name || p.email.split("@")[0]);
-      }
+      if (p.birthday && isBirthdayToday(p.birthday)) todayBirthdays.push(p.name || p.email.split("@")[0]);
     });
-
     if (todayBirthdays.length > 0) {
-      // Show global banner for ALL users
-      const banner     = document.getElementById("birthdayBanner");
+      const banner = document.getElementById("birthdayBanner");
       const bannerText = document.getElementById("bdBannerNames");
       const isCurrentUserBday = isBirthdayToday(userBirthday);
-
-      // Build message
-      let names = todayBirthdays.join(", ");
-      if (isCurrentUserBday) {
-        bannerText.textContent = `It's your birthday today! 🎈 Join the whole SCEM community in celebrating: ${names}`;
-      } else {
-        const plural = todayBirthdays.length > 1;
-        bannerText.textContent = `Let's celebrate ${names} — ${plural ? "their" : "their"} special day! Send them some love! 💕`;
-      }
+      const names = todayBirthdays.join(", ");
+      bannerText.textContent = isCurrentUserBday
+        ? `It's your birthday today! 🎈 Celebrating: ${names}`
+        : `Let's celebrate ${names} — send them some love! 💕`;
       banner.style.display = "block";
-
-      // Show personal birthday popup only if it's the current user's birthday
-      if (isCurrentUserBday) {
-        setTimeout(() => showBirthdayModal(userName.split(" ")[0]), 800);
-      }
+      if (isCurrentUserBday) setTimeout(() => showBirthdayModal(userName.split(" ")[0]), 800);
     }
   } catch(e) {
     console.error("Birthday check error:", e);
-    // Fallback: just check current user's birthday
-    if (isBirthdayToday(userBirthday)) {
-      setTimeout(() => showBirthdayModal(userName.split(" ")[0]), 800);
-    }
+    if (isBirthdayToday(userBirthday)) setTimeout(() => showBirthdayModal(userName.split(" ")[0]), 800);
   }
 }
 
-// ===== LOGOUT =====
 window.logout = async function() {
   if (unsubscribeAnn) { unsubscribeAnn(); unsubscribeAnn = null; }
   await signOut(auth);
   document.getElementById("dashboard").style.display = "none";
   document.getElementById("authPage").style.display  = "flex";
-  // Clear sign in fields
   document.getElementById("siEmail").value    = "";
   document.getElementById("siPassword").value = "";
 };
 
-// ===== FEATURES MODAL =====
-window.openFeaturesModal = function() {
-  document.getElementById("featuresModal").classList.add("open");
-  document.body.style.overflow = "hidden";
-};
-window.closeFeaturesModal = function() {
-  document.getElementById("featuresModal").classList.remove("open");
-  document.body.style.overflow = "";
-};
-window.handleModalOverlayClick = function(e) {
-  if (e.target === document.getElementById("featuresModal")) closeFeaturesModal();
-};
+window.openFeaturesModal  = function() { document.getElementById("featuresModal").classList.add("open"); document.body.style.overflow = "hidden"; };
+window.closeFeaturesModal = function() { document.getElementById("featuresModal").classList.remove("open"); document.body.style.overflow = ""; };
+window.handleModalOverlayClick = function(e) { if (e.target === document.getElementById("featuresModal")) closeFeaturesModal(); };
 
-// ===== LIGHTBOX =====
 window.openLightbox = function(src, caption) {
   document.getElementById("lightboxImg").src = src;
   document.getElementById("lightboxCaption").textContent = caption || "";
@@ -1369,9 +1322,17 @@ function enforceDateMin() {
   if (el) el.min = getTodayISO();
 }
 function catIcon(cat) {
-  return { Academic:"fa-solid fa-book", Event:"fa-solid fa-calendar-star", Urgent:"fa-solid fa-bell", General:"fa-solid fa-info-circle" }[cat] || "fa-solid fa-info-circle";
+  return {
+    Academic: "fa-solid fa-book",
+    Event: "fa-solid fa-calendar-star",
+    OutsideCampus: "fa-solid fa-map-location-dot",
+    General: "fa-solid fa-info-circle"
+  }[cat] || "fa-solid fa-info-circle";
 }
-function todayGB()    { return new Date().toLocaleDateString("en-GB"); }
+function catLabel(cat) {
+  return cat === "OutsideCampus" ? "Outside Campus" : cat;
+}
+function todayGB() { return new Date().toLocaleDateString("en-GB"); }
 function parseGB(str) { const p = str.split("/"); return p.length===3 ? new Date(`${p[2]}-${p[1]}-${p[0]}`) : new Date(str); }
 function fmtPosted(d) { try { return parseGB(d).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}); } catch { return d; } }
 function fmtTime(t) {
@@ -1386,7 +1347,6 @@ window.showToast = function(msg) {
   setTimeout(() => t.classList.remove("show"), 2600);
 };
 
-// ===== MOBILE SIDEBAR =====
 window.openSidebar = function() {
   document.getElementById("sidebar").classList.add("open");
   document.getElementById("mobOverlay").classList.add("show");
@@ -1399,8 +1359,6 @@ window.closeSidebar = function() {
   document.getElementById("mobMenuBtn").classList.remove("is-open");
   document.body.style.overflow = "";
 };
-
-// ===== NAVIGATION =====
 window.showPage = function(pageId, btn) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
@@ -1408,6 +1366,25 @@ window.showPage = function(pageId, btn) {
   if (btn) btn.classList.add("active");
   closeSidebar();
   renderAll();
+  // Keep search value if navigating to announcements page (from top search), else clear
+  const topSearch = document.getElementById("topSearch");
+  if (pageId !== "announcementsPage" && pageId !== "dashboardPage") {
+    topSearch.value = "";
+    document.getElementById("topSearchClear").style.display = "none";
+    document.getElementById("dashSearch").value = "";
+    document.getElementById("annSearch").value  = "";
+  }
+};
+
+// ===== PIN TOGGLE =====
+window.togglePinInput = function() {
+  const cb = document.getElementById("pinInput");
+  cb.checked = !cb.checked;
+  syncPinToggleRow();
+};
+window.syncPinToggleRow = function() {
+  const cb = document.getElementById("pinInput");
+  document.getElementById("pinToggleRow").classList.toggle("active", cb.checked);
 };
 
 // ===== IMAGE UPLOAD =====
@@ -1443,6 +1420,7 @@ window.addAnnouncement = async function() {
   const timeVal  = document.getElementById("timeInput").value;
   const venue    = document.getElementById("venueInput").value.trim();
   const pic      = document.getElementById("picInput").value.trim();
+  const pinned   = document.getElementById("pinInput").checked;
 
   if (!title)   { showToast("Please enter a title"); return; }
   if (!dateVal) { showToast("Please select a date"); return; }
@@ -1456,7 +1434,7 @@ window.addAnnouncement = async function() {
   postBtn.disabled = true;
 
   try {
-    const data = { title, desc, category, date: formattedDate, time: timeVal||"", venue: venue||"", pic: pic||"", image: uploadedImageData||null };
+    const data = { title, desc, category, date: formattedDate, time: timeVal||"", venue: venue||"", pic: pic||"", image: uploadedImageData||null, pinned: pinned };
     if (editingId !== null) {
       const docRef = doc(db, "announcements", editingId);
       const existing = await getDoc(docRef);
@@ -1471,9 +1449,11 @@ window.addAnnouncement = async function() {
     } else {
       data.createdAt = serverTimestamp();
       await addDoc(annCol, data);
-      showToast("✅ Announcement posted!");
+      showToast(pinned ? "📌 Announcement pinned & posted!" : "✅ Announcement posted!");
     }
     ["titleInput","descInput","dateInput","timeInput","venueInput","picInput"].forEach(id => { document.getElementById(id).value = ""; });
+    document.getElementById("pinInput").checked = false;
+    syncPinToggleRow();
     clearImage(); enforceDateMin();
   } catch(err) {
     console.error("Error saving:", err);
@@ -1489,6 +1469,8 @@ window.editAnnouncement = function(id) {
   document.getElementById("timeInput").value     = a.time  || "";
   document.getElementById("venueInput").value    = a.venue || "";
   document.getElementById("picInput").value      = a.pic   || "";
+  document.getElementById("pinInput").checked    = a.pinned || false;
+  syncPinToggleRow();
   const p = a.date.split("/");
   document.getElementById("dateInput").value = `${p[2]}-${p[1]}-${p[0]}`;
   enforceDateMin();
@@ -1509,6 +1491,8 @@ window.editAnnouncement = function(id) {
 window.cancelEdit = function() {
   editingId = null;
   ["titleInput","descInput","dateInput","timeInput","venueInput","picInput"].forEach(id => { document.getElementById(id).value = ""; });
+  document.getElementById("pinInput").checked = false;
+  syncPinToggleRow();
   clearImage(); enforceDateMin();
   document.getElementById("postBtnText").textContent     = "Post Announcement";
   document.getElementById("cancelEditBtn").style.display = "none";
@@ -1521,9 +1505,17 @@ window.deleteAnnouncement = async function(id) {
     await deleteDoc(doc(db, "announcements", id));
     if (selectedManageId === id) selectedManageId = null;
     showToast("🗑️ Deleted!");
-  } catch(err) {
-    console.error("Error deleting:", err); showToast("❌ Error deleting.");
-  }
+  } catch(err) { console.error("Error deleting:", err); showToast("❌ Error deleting."); }
+};
+
+// ===== PIN TOGGLE (from card) =====
+window.togglePin = async function(id) {
+  const a = announcements.find(x => x.id === id); if (!a) return;
+  const newPinned = !a.pinned;
+  try {
+    await updateDoc(doc(db, "announcements", id), { pinned: newPinned });
+    showToast(newPinned ? "📌 Announcement pinned!" : "📌 Announcement unpinned.");
+  } catch(err) { console.error("Pin error:", err); showToast("❌ Error updating pin."); }
 };
 
 // ===== FILTERS =====
@@ -1541,13 +1533,25 @@ window.setManageSideFilter = function(val, btn) {
   document.querySelectorAll(".manage-filter-row .manage-filter").forEach(b => b.classList.remove("active"));
   btn.classList.add("active"); managePage = 1; renderManageGrid();
 };
+
 function getFiltered(filter, sortVal, searchVal) {
   let list = [...announcements];
   if (filter !== "All") list = list.filter(a => a.category === filter);
-  if (searchVal) { const q = searchVal.toLowerCase(); list = list.filter(a => a.title.toLowerCase().includes(q) || a.desc.toLowerCase().includes(q)); }
+  if (searchVal && searchVal.trim()) {
+    const q = searchVal.trim().toLowerCase();
+    list = list.filter(a =>
+      (a.title  || "").toLowerCase().includes(q) ||
+      (a.desc   || "").toLowerCase().includes(q) ||
+      (a.venue  || "").toLowerCase().includes(q) ||
+      (a.pic    || "").toLowerCase().includes(q) ||
+      catLabel(a.category).toLowerCase().includes(q)
+    );
+  }
   if (sortVal === "oldest")  list.sort((a,b) => parseGB(a.date)-parseGB(b.date));
   else if (sortVal === "az") list.sort((a,b) => a.title.localeCompare(b.title));
   else                       list.sort((a,b) => parseGB(b.date)-parseGB(a.date));
+  // Pinned always float to top
+  list.sort((a,b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
   return list;
 }
 
@@ -1561,13 +1565,23 @@ function buildExtraChips(a) {
 }
 
 function buildAnnItem(a, showCatBadge) {
-  const isToday   = a.date === todayGB();
+  const isToday = a.date === todayGB();
+  const isPinned = a.pinned || false;
+  const pinBadge = isPinned ? `<div class="pin-badge"><i class="fa-solid fa-thumbtack"></i> Pinned</div>` : "";
   const adminBtns = userRole === "admin"
-    ? `<div class="ann-actions"><button class="btn-edit" onclick="editAnnouncement('${a.id}')">Edit</button><button class="btn-delete" onclick="deleteAnnouncement('${a.id}')">Delete</button></div>` : "";
-  const catBadge  = showCatBadge ? `<span class="ann-cat-badge ${a.category}">${a.category}</span>` : "";
-  const imgHtml   = a.image ? `<div class="ann-img-wrap" onclick="openLightbox('${a.image}','${a.title.replace(/'/g,"\\'")}')"><img src="${a.image}" alt="${a.title}"><div class="ann-img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom</div></div>` : "";
-  const div = document.createElement("div"); div.className = "ann-item";
+    ? `<div class="ann-actions">
+        <button class="btn-pin ${isPinned ? 'pinned' : ''}" onclick="togglePin('${a.id}')">
+          <i class="fa-solid fa-thumbtack"></i>${isPinned ? 'Unpin' : 'Pin'}
+        </button>
+        <button class="btn-edit" onclick="editAnnouncement('${a.id}')">Edit</button>
+        <button class="btn-delete" onclick="deleteAnnouncement('${a.id}')">Delete</button>
+      </div>` : "";
+  const catBadge = showCatBadge ? `<span class="ann-cat-badge ${a.category}">${catLabel(a.category)}</span>` : "";
+  const imgHtml  = a.image ? `<div class="ann-img-wrap" onclick="openLightbox('${a.image}','${a.title.replace(/'/g,"\\'")}')"><img src="${a.image}" alt="${a.title}"><div class="ann-img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom</div></div>` : "";
+  const div = document.createElement("div");
+  div.className = "ann-item" + (isPinned ? " pinned-item" : "");
   div.innerHTML = `
+    ${pinBadge}
     <div class="ann-cat-icon ${a.category}"><i class="${catIcon(a.category)}"></i></div>
     <div class="ann-body">
       ${imgHtml}
@@ -1589,21 +1603,45 @@ function updateStats() {
   document.getElementById("statTotal").textContent    = announcements.length;
   document.getElementById("statToday").textContent    = announcements.filter(a => a.date === today).length;
   document.getElementById("statUpcoming").textContent = announcements.filter(a => parseGB(a.date) > now).length;
-  const m = now.getMonth(), y = now.getFullYear();
-  document.getElementById("statMonth").textContent    = announcements.filter(a => { const d = parseGB(a.date); return d.getMonth()===m && d.getFullYear()===y; }).length;
+  document.getElementById("statPinned").textContent   = announcements.filter(a => a.pinned).length;
+}
+
+function renderListWithPinnedSection(container, list, showCatBadge) {
+  container.innerHTML = "";
+  if (!list.length) {
+    container.innerHTML = '<div class="empty-state"><i class="fa-solid fa-inbox"></i><p>No announcements found</p></div>';
+    return;
+  }
+  const pinned   = list.filter(a => a.pinned);
+  const unpinned = list.filter(a => !a.pinned);
+
+  if (pinned.length > 0) {
+    const section = document.createElement("div");
+    section.className = "pinned-section";
+    section.innerHTML = `<div class="pinned-section-header"><i class="fa-solid fa-thumbtack"></i><span>📌 Pinned Announcements</span></div>`;
+    const innerList = document.createElement("div");
+    innerList.className = "ann-list";
+    pinned.forEach(a => innerList.appendChild(buildAnnItem(a, showCatBadge)));
+    section.appendChild(innerList);
+    container.appendChild(section);
+  }
+
+  if (unpinned.length > 0) {
+    const innerList = document.createElement("div");
+    innerList.className = "ann-list";
+    unpinned.forEach(a => innerList.appendChild(buildAnnItem(a, showCatBadge)));
+    container.appendChild(innerList);
+  }
 }
 
 function renderDashList() {
   const list = getFiltered(filters.dash, document.getElementById("dashSortSelect").value, document.getElementById("dashSearch").value);
-  const c = document.getElementById("dashAnnList"); c.innerHTML = "";
-  if (!list.length) { c.innerHTML = '<div class="empty-state"><i class="fa-solid fa-inbox"></i><p>No announcements found</p></div>'; return; }
-  list.forEach(a => c.appendChild(buildAnnItem(a, false)));
+  renderListWithPinnedSection(document.getElementById("dashAnnList"), list, false);
 }
+
 function renderAnnList() {
   const list = getFiltered(filters.ann, document.getElementById("annSortSelect").value, document.getElementById("annSearch").value);
-  const c = document.getElementById("annListContainer"); c.innerHTML = "";
-  if (!list.length) { c.innerHTML = '<div class="empty-state"><i class="fa-solid fa-inbox"></i><p>No announcements found</p></div>'; return; }
-  list.forEach(a => c.appendChild(buildAnnItem(a, true)));
+  renderListWithPinnedSection(document.getElementById("annListContainer"), list, true);
 }
 
 function renderManageGrid() {
@@ -1614,8 +1652,9 @@ function renderManageGrid() {
   let list = [...announcements];
   if (cf !== "All") list = list.filter(a => a.category === cf);
   if (search) list = list.filter(a => a.title.toLowerCase().includes(search) || a.desc.toLowerCase().includes(search));
-  if (dateF) { const df = new Date(dateF).toLocaleDateString("en-GB"); list = list.filter(a => a.date === df); }
+  if (dateF)  { const df = new Date(dateF).toLocaleDateString("en-GB"); list = list.filter(a => a.date === df); }
   list.sort(sort === "oldest" ? (a,b) => parseGB(a.date)-parseGB(b.date) : (a,b) => parseGB(b.date)-parseGB(a.date));
+  list.sort((a,b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
   const totalPages = Math.max(1, Math.ceil(list.length/PER_PAGE));
   if (managePage > totalPages) managePage = totalPages;
   const paged = list.slice((managePage-1)*PER_PAGE, managePage*PER_PAGE);
@@ -1624,22 +1663,27 @@ function renderManageGrid() {
   if (!paged.length) { grid.innerHTML = '<div class="empty-state" style="grid-column:span 2"><i class="fa-solid fa-inbox"></i><p>No announcements</p></div>'; return; }
   paged.forEach(a => {
     const card = document.createElement("div");
-    card.className = "manage-ann-card" + (selectedManageId===a.id?" selected":"");
+    card.className = "manage-ann-card" + (selectedManageId===a.id?" selected":"") + (a.pinned?" is-pinned":"");
     card.onclick = () => { selectedManageId = a.id; renderManageGrid(); };
     const imgThumb = a.image ? `<div class="manage-thumb-wrap" onclick="event.stopPropagation();openLightbox('${a.image}','${a.title.replace(/'/g,"\\'")}')"><img src="${a.image}" alt="${a.title}"><div class="ann-img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div>` : "";
     const chipParts = [];
     if (a.time)  chipParts.push(`<div class="manage-chip"><i class="fa-solid fa-clock"></i>${fmtTime(a.time)}</div>`);
     if (a.venue) chipParts.push(`<div class="manage-chip"><i class="fa-solid fa-location-dot"></i>${a.venue}</div>`);
     if (a.pic)   chipParts.push(`<div class="manage-chip"><i class="fa-solid fa-user-tie"></i>${a.pic}</div>`);
+    const pinIndicator = a.pinned ? `<div class="manage-pin-indicator" title="Pinned"><i class="fa-solid fa-thumbtack"></i></div>` : "";
     card.innerHTML = `
+      ${pinIndicator}
       ${imgThumb}
       <div class="manage-card-top"><div class="manage-card-icon ${a.category}"><i class="${catIcon(a.category)}"></i></div><div class="manage-card-title">${a.title}</div></div>
       <div class="manage-card-desc">${a.desc}</div>
       ${chipParts.length?`<div class="manage-card-chips">${chipParts.join("")}</div>`:""}
       <div class="manage-posted">Posted on ${fmtPosted(a.date)}</div>
-      <div class="manage-card-meta"><span class="manage-card-date"><i class="fa-regular fa-clock"></i> ${a.date}</span><span class="manage-card-cat ${a.category}">${a.category}</span></div>
+      <div class="manage-card-meta"><span class="manage-card-date"><i class="fa-regular fa-clock"></i> ${a.date}</span><span class="manage-card-cat ${a.category}">${catLabel(a.category)}</span></div>
       <div class="manage-card-actions">
         <button class="btn-sm-edit" onclick="event.stopPropagation();editAnnouncement('${a.id}')">Edit</button>
+        <button class="btn-sm-pin ${a.pinned?'active':''}" onclick="event.stopPropagation();togglePin('${a.id}')">
+          <i class="fa-solid fa-thumbtack"></i>${a.pinned?'Unpin':'Pin'}
+        </button>
         <button class="btn-sm-delete" onclick="event.stopPropagation();deleteAnnouncement('${a.id}')">Delete</button>
       </div>`;
     grid.appendChild(card);
@@ -1698,7 +1742,7 @@ function renderFullCal() {
     const dateStr = new Date(y,m,d).toLocaleDateString("en-GB");
     if (d===today.getDate() && m===today.getMonth() && y===today.getFullYear()) cell.classList.add("today");
     const dayEvents = announcements.filter(a => a.date===dateStr);
-    let evHtml = dayEvents.slice(0,2).map(e => `<div class="cell-event ${e.category}">${e.title}</div>`).join("");
+    let evHtml = dayEvents.slice(0,2).map(e => `<div class="cell-event ${e.category}">${e.pinned?'📌 ':''}${e.title}</div>`).join("");
     if (dayEvents.length > 2) evHtml += `<div class="cell-event General">+${dayEvents.length-2} more</div>`;
     cell.innerHTML = `<div class="cell-num">${d}</div>${evHtml}`;
     grid.appendChild(cell);
@@ -1706,10 +1750,55 @@ function renderFullCal() {
 }
 window.changeFullMonth = function(dir) { fullCalViewDate.setMonth(fullCalViewDate.getMonth()+dir); renderFullCal(); };
 
+// ===== SYNC SEARCH FROM PANEL INPUTS =====
+window.syncSearchFromPanel = function(panel) {
+  const q = panel === "dash"
+    ? document.getElementById("dashSearch").value
+    : document.getElementById("annSearch").value;
+  // Keep top search bar in sync
+  document.getElementById("topSearch").value = q;
+  document.getElementById("topSearchClear").style.display = q.length > 0 ? "block" : "none";
+  if (panel === "dash") renderDashList();
+  else renderAnnList();
+};
+
+// ===== GLOBAL TOP SEARCH =====
 window.handleTopSearch = function() {
-  const q = document.getElementById("topSearch").value.toLowerCase();
-  if (q.length < 2) return;
-  document.getElementById("dashSearch").value = q; renderDashList();
+  const q = document.getElementById("topSearch").value;
+  const clearBtn = document.getElementById("topSearchClear");
+  clearBtn.style.display = q.length > 0 ? "block" : "none";
+  if (q.length === 0) {
+    // Clear search in all panels and re-render
+    document.getElementById("dashSearch").value = "";
+    document.getElementById("annSearch").value  = "";
+    renderDashList();
+    renderAnnList();
+    return;
+  }
+  // Live-sync both search bars and re-render current page
+  document.getElementById("dashSearch").value = q;
+  document.getElementById("annSearch").value  = q;
+  renderDashList();
+  renderAnnList();
+};
+
+window.submitTopSearch = function() {
+  const q = document.getElementById("topSearch").value.trim();
+  if (!q) return;
+  // Navigate to announcements page and focus results
+  document.getElementById("annSearch").value = q;
+  document.getElementById("dashSearch").value = q;
+  showPage("announcementsPage", document.querySelector('[onclick*="announcementsPage"]'));
+  renderAnnList();
+};
+
+window.clearTopSearch = function() {
+  document.getElementById("topSearch").value          = "";
+  document.getElementById("topSearchClear").style.display = "none";
+  document.getElementById("dashSearch").value         = "";
+  document.getElementById("annSearch").value          = "";
+  renderDashList();
+  renderAnnList();
 };
 </script>
 </body>
