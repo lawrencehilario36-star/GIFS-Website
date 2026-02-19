@@ -6,7 +6,7 @@ const accounts = {
 
 // HTML elements
 const loginPage = document.getElementById("loginPage");
-const dashboard = document.getElementById("dashboard");
+const dashboard = document.getElementById("dashboard");  
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const adminForm = document.getElementById("adminForm");
